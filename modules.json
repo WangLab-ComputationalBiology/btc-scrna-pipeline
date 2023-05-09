@@ -1,0 +1,42 @@
+{
+    "name": "nf-core/btcpipeline",
+    "homePage": "https://github.com/nf-core/btcpipeline",
+    "repos": {
+        "https://github.com/nf-core/modules.git": {
+            "modules": {
+                "nf-core": {
+                    "cellranger/count": {
+                        "branch": "master",
+                        "git_sha": "abe9c71bdc56686abd337995580fbf35a6e5e013",
+                        "installed_by": ["modules"]
+                    },
+                    "cellranger/mkgtf": {
+                        "branch": "master",
+                        "git_sha": "abe9c71bdc56686abd337995580fbf35a6e5e013",
+                        "installed_by": ["modules"]
+                    },
+                    "cellranger/mkref": {
+                        "branch": "master",
+                        "git_sha": "abe9c71bdc56686abd337995580fbf35a6e5e013",
+                        "installed_by": ["modules"]
+                    },
+                    "custom/dumpsoftwareversions": {
+                        "branch": "master",
+                        "git_sha": "c8e35eb2055c099720a75538d1b8adb3fb5a464c",
+                        "installed_by": ["modules"]
+                    },
+                    "fastqc": {
+                        "branch": "master",
+                        "git_sha": "c8e35eb2055c099720a75538d1b8adb3fb5a464c",
+                        "installed_by": ["modules"]
+                    },
+                    "multiqc": {
+                        "branch": "master",
+                        "git_sha": "c8e35eb2055c099720a75538d1b8adb3fb5a464c",
+                        "installed_by": ["modules"]
+                    }
+                }
+            }
+        }
+    }
+}

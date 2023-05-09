@@ -1,0 +1,6 @@
+[submodule "notebook"]
+	path = notebook
+	url = https://github.com/WangLab-ComputationalBiology/btc-sc-notebooks.git
+[submodule "container"]
+	path = container
+	url = https://github.com/WangLab-ComputationalBiology/btc-sc-containers.git

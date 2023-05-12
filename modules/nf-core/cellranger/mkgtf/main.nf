@@ -2,7 +2,7 @@ process CELLRANGER_MKGTF {
     tag "$gtf"
     label 'process_low'
 
-    container "nfcore/cellranger:7.1.0"
+    container "oandrefonseca/scaligners:1.0"
 
     // Exit if running this module with -profile conda / -profile mamba
     if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
@@ -10,27 +10,28 @@ process CELLRANGER_MKGTF {
     }
 
     input:
-    path gtf
+        path gtf
 
     output:
-    path "*.filtered.gtf", emit: gtf
-    path "versions.yml"  , emit: versions
+        path "*.filtered.gtf", emit: gtf
+        path "versions.yml"  , emit: versions
 
     when:
-    task.ext.when == null || task.ext.when
+        task.ext.when == null || task.ext.when
 
     script:
-    def args = task.ext.args ?: ''
-    """
-    cellranger \\
-        mkgtf \\
-        $gtf \\
-        ${gtf.baseName}.filtered.gtf \\
-        $args
+        def args = task.ext.args ?: ''
+        """
+        cellranger \\
+            mkgtf \\
+            $gtf \\
+            ${gtf.baseName}.filtered.gtf \\
+            --attribute=gene_type:protein_coding \\
+            $args
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        cellranger: \$(echo \$( cellranger --version 2>&1) | sed 's/^.*[^0-9]\\([0-9]*\\.[0-9]*\\.[0-9]*\\).*\$/\\1/' )
-    END_VERSIONS
-    """
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            cellranger: \$(echo \$( cellranger --version 2>&1) | sed 's/^.*[^0-9]\\([0-9]*\\.[0-9]*\\.[0-9]*\\).*\$/\\1/' )
+        END_VERSIONS
+        """
 }

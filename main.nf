@@ -34,13 +34,13 @@ WorkflowMain.initialise(workflow, params, log)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { BTCPIPELINE } from './workflows/btcpipeline'
+include { BTC_SCRNA_PIPELINE } from './workflows/btc_scrna_pipeline'
 
 //
-// WORKFLOW: Run main nf-core/btcpipeline analysis pipeline
+// WORKFLOW: Run main nf-core/btc_scrna_pipeline analysis pipeline
 //
-workflow NFCORE_BTCPIPELINE {
-    BTCPIPELINE ()
+workflow BTC_PIPELINE {
+    BTC_SCRNA_PIPELINE ()
 }
 
 /*
@@ -54,7 +54,7 @@ workflow NFCORE_BTCPIPELINE {
 // See: https://github.com/nf-core/rnaseq/issues/619
 //
 workflow {
-    NFCORE_BTCPIPELINE ()
+    BTC_SCRNA_PIPELINE ()
 }
 
 /*

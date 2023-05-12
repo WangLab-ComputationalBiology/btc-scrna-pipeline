@@ -29,10 +29,10 @@ process CELLRANGER_COUNT {
                 count \\
                 --id='sample-${meta.gem}' \\
                 --fastqs=. \\
-                --transcriptome=$reference_name \\
-                --sample=$sample_arg \\
+                --transcriptome=${reference_name} \\
+                --sample=${sample_arg} \\
                 --include-introns=false \\
-                --localcores=$task.cpus \\
+                --localcores=${task.cpus} \\
                 --localmem=${task.memory.toGiga()} \\
                 $args
 

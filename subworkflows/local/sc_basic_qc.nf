@@ -12,26 +12,51 @@ workflow SC_BASIC_QC {
 
     take:
         // TODO nf-core: edit input (take) channels
-        ch_bam // channel: [ val(meta), [ bam ] ]
+        ch_fastq // channel: [ val(meta), [ bam ] ]
+        ch_meta // channel: 
+        genome
 
     main:
-
+        // Channel versions
         ch_versions = Channel.empty()
 
-        // TODO nf-core: substitute modules here for the modules of your subworkflow
+        // Retrieving Cellranger indexes
+        BTCMODULES_INDEX(genome)
 
-        SAMTOOLS_SORT ( ch_bam )
-        ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions.first())
+        // Cellranger alignment
+        CELLRANGER_COUNT(samples_grouped_channel, DOWNLOAD_HG_INDEX.out.index)
 
-        SAMTOOLS_INDEX ( SAMTOOLS_SORT.out.bam )
-        ch_versions = ch_versions.mix(SAMTOOLS_INDEX.out.versions.first())
+        ch_cell_matrices = CELLRANGER_COUNT.out.cell_out.map{sample, outs -> [sample, outs.findAll {
+            it.toString().endsWith("metrics_summary.csv") || it.toString().endsWith("filtered_feature_bc_matrix")}]}
+            .map{sample, files -> [sample, files[0], files[1]]}
+
+        ch_cell_matrices = ch_cell_matrices
+            .combine(meta_channel)
+
+        // Performing QC steps
+        SAMPLE_CELL_QC(ch_cell_matrices, scqc_script)
+
+        // Writing QC check
+        ch_quality_report = SAMPLE_CELL_QC.out.metrics
+            .collect()
+    
+        // Generating QC table
+        QUALITY_TABLE(ch_quality_report, qc_table_script)
+
+        // Filter poor quality samples
+        ch_qc_approved = SAMPLE_CELL_QC.out.status
+            .filter{sample, object, status -> status.toString().endsWith('SUCCESS.txt')}
+            .map{sample, object, status -> object}
+            .collect()
+
+        ch_qc_approved
+            .ifEmpty{error 'No samples matched QC expectations.'}
+            .view{'Done'}
+
+        ch_versions = ch_versions.mix(BTCMODULES_INDEX.out.versions.first())
 
     emit:
         // TODO nf-core: edit emitted channels
-        bam      = SAMTOOLS_SORT.out.bam           // channel: [ val(meta), [ bam ] ]
-        bai      = SAMTOOLS_INDEX.out.bai          // channel: [ val(meta), [ bai ] ]
-        csi      = SAMTOOLS_INDEX.out.csi          // channel: [ val(meta), [ csi ] ]
-
-        versions = ch_versions                     // channel: [ versions.yml ]
+        ch_qc_approved = ch_qc_approved // channel: [ val(meta), [ bam ] ]
+        versions = ch_versions          // channel: [ versions.yml ]
 }
-

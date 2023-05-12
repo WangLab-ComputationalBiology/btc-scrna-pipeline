@@ -1,15 +1,16 @@
 process BTCMODULES_INDEX {
+    
     tag 'download'
     label 'process_single'
 
     container "oandrefonseca/scaligners:1.0"
 
     input:
-        path bam
+        val(genome)
 
     output:
-        path "*.bam", emit: bam
-        path "versions.yml"           , emit: versions
+        path("indexes/${genome}"), emit: index
+        path "versions.yml"      , emit: versions
 
     when:
         task.ext.when == null || task.ext.when
@@ -26,5 +27,8 @@ process BTCMODULES_INDEX {
         "${task.process}":
             btcmodules: https://storage.googleapis.com/btc-dshub-pipelines/scRNA/refData/GRCh38.tar
         END_VERSIONS
+        """
+    stub:
+        """
         """
 }

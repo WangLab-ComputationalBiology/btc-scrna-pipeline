@@ -30,5 +30,7 @@ process BTCMODULES_INDEX {
         """
     stub:
         """
+        mkdir ./indexes
+        touch ${indexes[genome]}
         """
 }

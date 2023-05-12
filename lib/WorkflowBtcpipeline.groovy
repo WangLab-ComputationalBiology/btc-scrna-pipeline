@@ -4,7 +4,7 @@
 
 import groovy.text.SimpleTemplateEngine
 
-class WorkflowBtcpipeline {
+class WorkflowBtcscrnapipeline {
 
     //
     // Check and validate parameters

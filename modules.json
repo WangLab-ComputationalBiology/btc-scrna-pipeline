@@ -1,6 +1,6 @@
 {
-    "name": "nf-core/btcpipeline",
-    "homePage": "https://github.com/nf-core/btcpipeline",
+    "name": "oandrefonseca/btc-scrna-pipeline",
+    "homePage": "https://github.com/oandrefonseca/btc-scrna-pipeline",
     "repos": {
         "https://github.com/nf-core/modules.git": {
             "modules": {

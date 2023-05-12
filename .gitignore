@@ -4,9 +4,10 @@ data/
 results/
 notebook/dev
 Test/
-.Rproj.user/
 .DS_Store
 testing/
 testing*
 *.pyc
 *.Rproj
+*.Rhistory
+.Rproj.user/

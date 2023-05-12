@@ -17,7 +17,7 @@ process SAMPLESHEET_CHECK {
     when:
     task.ext.when == null || task.ext.when
 
-    script: // This script is bundled with the pipeline, in nf-core/btcpipeline/bin/
+    script: // This script is bundled with the pipeline, in nf-core/btcscrnapipeline/bin/
     """
     check_samplesheet.py \\
         $samplesheet \\

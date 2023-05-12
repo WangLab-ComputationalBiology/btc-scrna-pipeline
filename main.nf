@@ -1,12 +1,11 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/btcpipeline
+    nf-core/btcscrnapipeline
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/btcpipeline
-
-    Website: https://nf-co.re/btcpipeline
-    Slack  : https://nfcore.slack.com/channels/btcpipeline
+    Github : https://github.com/nf-core/btcscrnapipeline
+    Website: https://nf-co.re/btcscrnapipeline
+    Slack  : https://nfcore.slack.com/channels/btcscrnapipeline
 ----------------------------------------------------------------------------------------
 */
 

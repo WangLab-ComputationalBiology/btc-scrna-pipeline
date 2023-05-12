@@ -1,5 +1,5 @@
 //
-// This file holds several functions specific to the main.nf workflow in the nf-core/btcpipeline pipeline
+// This file holds several functions specific to the main.nf workflow in the nf-core/btcscrnapipeline pipeline
 //
 
 class WorkflowMain {

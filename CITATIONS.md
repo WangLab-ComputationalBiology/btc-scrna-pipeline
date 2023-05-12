@@ -1,4 +1,4 @@
-# nf-core/btcpipeline: Citations
+# nf-core/btcscrnapipeline: Citations
 
 ## [nf-core](https://pubmed.ncbi.nlm.nih.gov/32055031/)
 

@@ -1,5 +1,5 @@
 //
-// This file holds several functions specific to the workflow/btcpipeline.nf in the nf-core/btcpipeline pipeline
+// This file holds several functions specific to the workflow/btcscrnapipeline.nf in the nf-core/btcscrnapipeline pipeline
 //
 
 import groovy.text.SimpleTemplateEngine

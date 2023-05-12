@@ -1,4 +1,4 @@
-# nf-core/btcpipeline: Output
+# nf-core/btcscrnapipeline: Output
 
 ## Introduction
 

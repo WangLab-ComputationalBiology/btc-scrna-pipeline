@@ -1,7 +1,7 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/btcpipeline/master/assets/schema_input.json",
-    "title": "nf-core/btcpipeline pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/btcscrnapipeline/master/assets/schema_input.json",
+    "title": "nf-core/btcscrnapipeline pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {

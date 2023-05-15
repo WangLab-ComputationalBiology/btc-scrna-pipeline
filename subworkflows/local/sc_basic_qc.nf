@@ -4,9 +4,9 @@
 //               https://nf-co.re/join
 // TODO nf-core: A subworkflow SHOULD import at least two modules
 
-include { BTCMODULES_INDEX   } from '../../../modules/local/btc_modules/indexes/main'
-include { CELLRANGER_COUNT   } from '../../../modules/nf-core/cellranger/count/main'
-include { CELLRANGER_MKGTF   } from '../../../modules/nf-core/cellranger/mkgtf/main'
+include { CELLRANGER_COUNT } from '../../modules/nf-core/cellranger/count/main'
+include { CELLRANGER_MKGTF } from '../../modules/nf-core/cellranger/mkgtf/main'
+include { BTCMODULES_INDEX } from '../../modules/local/btcmodules/indexes/main'
 
 workflow SC_BASIC_QC {
 

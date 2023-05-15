@@ -22,7 +22,7 @@ class WorkflowMain {
     // Generate help string
     //
     public static String help(workflow, params, log) {
-        def command = "nextflow run ${workflow.manifest.name} --input samplesheet.csv --genome GRCh37 -profile docker"
+        def command = "nextflow run ${workflow.manifest.name} --sample_table samplesheet.csv --genome GRCh38 -profile docker"
         def help_string = ''
         help_string += NfcoreTemplate.logo(workflow, params.monochrome_logs)
         help_string += NfcoreSchema.paramsHelp(workflow, params, command)
@@ -80,7 +80,7 @@ class WorkflowMain {
         NfcoreTemplate.awsBatch(workflow, params)
 
         // Check input has been provided
-        if (!params.input) {
+        if (!params.sample_table) {
             log.error "Please provide an input samplesheet to the pipeline e.g. '--input samplesheet.csv'"
             System.exit(1)
         }

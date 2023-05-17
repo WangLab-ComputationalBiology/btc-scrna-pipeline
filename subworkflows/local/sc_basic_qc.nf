@@ -12,8 +12,8 @@ workflow SC_BASIC_QC {
 
     take:
         // TODO nf-core: edit input (take) channels
-        ch_fastq // channel: [ val(meta), [ bam ] ]
-        ch_meta // channel: 
+        ch_sample_table // channel: [ val(meta), [ bam ] ]
+        ch_meta_data // channel: path
         genome
 
     main:
@@ -23,8 +23,22 @@ workflow SC_BASIC_QC {
         // Retrieving Cellranger indexes
         BTCMODULES_INDEX(genome)
 
+        ch_sample_table
+            .view()
+
+        // Grouping fastq based on sample id
+        ch_samples_grouped = ch_sample_table
+            .map {row -> tuple row.id, row.fastq_1, row.fastq_2 }
+            //.groupTuple(by: [0])
+            //.map { row -> tuple row[0], row[1 .. 2].flatten() }
+
+        ch_samples_grouped
+            .view()
+
+        /*
+
         // Cellranger alignment
-        CELLRANGER_COUNT(samples_grouped_channel, DOWNLOAD_HG_INDEX.out.index)
+        CELLRANGER_COUNT(ch_samples_grouped, BTCMODULES_INDEX.out.index)
 
         ch_cell_matrices = CELLRANGER_COUNT.out.cell_out.map{sample, outs -> [sample, outs.findAll {
             it.toString().endsWith("metrics_summary.csv") || it.toString().endsWith("filtered_feature_bc_matrix")}]}
@@ -54,9 +68,12 @@ workflow SC_BASIC_QC {
             .view{'Done'}
 
         ch_versions = ch_versions.mix(BTCMODULES_INDEX.out.versions.first())
-
+        */
     emit:
         // TODO nf-core: edit emitted channels
-        ch_qc_approved = ch_qc_approved // channel: [ val(meta), [ bam ] ]
-        versions = ch_versions          // channel: [ versions.yml ]
+        //ch_qc_approved = ch_qc_approved // channel: [ val(meta), [ bam ] ]
+        //versions = ch_versions          // channel: [ versions.yml ]
+        //ch_samples_grouped
+        ch_sample_table
+
 }

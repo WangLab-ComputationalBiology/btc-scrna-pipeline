@@ -11,11 +11,13 @@ WorkflowBtcscrnapipeline.initialise(params, log)
 
 // TODO nf-core: Add all file path parameters for the pipeline to the list below
 // Check input path parameters to see if they exist
-def checkPathParamList = [ params.sample_table, params.meta_data, params.project_name ]
+def checkPathParamList = [ params.sample_table, params.meta_data ]
 for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true) } }
 
 // Check mandatory parameters
-if (params.sample_table) { ch_input = file(params.sample_table) } else { exit 1, 'Input samplesheet not specified!' }
+if (params.sample_table) { ch_sample_table = file(params.sample_table) } else { exit 1, 'Sample sheet not specified. Please, provide a --sample_table <PATH/TO/SAMMPLE_TABLE.csv> !' }
+if (params.meta_data) { ch_meta_data = file(params.meta_data) } else { exit 1, 'Meta-data not specified. Please, provide a --meta_data <PATH/TO/META_DATA.csv>' }
+if (params.project_name) { ch_project_name = file(params.project_name) } else { exit 1, 'Project name not specified. Please, provide a --project_name <NAME>.' }
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -42,8 +44,11 @@ workflow BTC_SCRNA_PIPELINE {
 
     ch_versions = Channel.empty()
 
-    INPUT_CHECK(ch_input)
+    INPUT_CHECK(ch_sample_table)
+    SC_BASIC_QC(INPUT_CHECK.out.reads, ch_meta_data, params.genome)
+    
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
+    ch_versions.view()
 }
 
 /*
@@ -52,6 +57,7 @@ workflow BTC_SCRNA_PIPELINE {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+/*
 workflow.onComplete {
     if (params.email || params.email_on_fail) {
         NfcoreTemplate.email(workflow, params, summary_params, projectDir, log, multiqc_report)
@@ -61,6 +67,7 @@ workflow.onComplete {
         NfcoreTemplate.IM_notification(workflow, params, summary_params, projectDir, log)
     }
 }
+*/
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

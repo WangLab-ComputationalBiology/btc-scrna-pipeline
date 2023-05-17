@@ -1,21 +1,16 @@
 process CELLRANGER_COUNT {
-    tag "$meta.gem"
+    tag "$meta.id"
     label 'process_high'
 
     container "oandrefonseca/scaligners:1.0"
-
-    // Exit if running this module with -profile conda / -profile mamba
-    if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
-        exit 1, "CELLRANGER_COUNT module does not support Conda. Please use Docker / Singularity / Podman instead."
-    }
 
     input:
         tuple val(meta), path(reads)
         path  reference
 
     output:
-        tuple val(meta), path("sample-${meta.gem}/outs/*"), emit: outs
-        path "versions.yml"                               , emit: versions
+        tuple val(meta), path("sample/${meta.id}/outs/*"), emit: outs
+        path "versions.yml"                              , emit: versions
 
     when:
         task.ext.when == null || task.ext.when
@@ -27,7 +22,7 @@ process CELLRANGER_COUNT {
         """
             cellranger \\
                 count \\
-                --id='sample-${meta.gem}' \\
+                --id='${meta.id}' \\
                 --fastqs=. \\
                 --transcriptome=${reference_name} \\
                 --sample=${sample_arg} \\
@@ -44,8 +39,8 @@ process CELLRANGER_COUNT {
 
     stub:
         """
-        mkdir -p "sample-${meta.gem}/outs/"
-        touch sample-${meta.gem}/outs/fake_file.txt
+        mkdir -p "sample/${meta.id}/outs/"
+        touch sample/${meta.id}/outs/fake_file.txt
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":

@@ -16,9 +16,9 @@ process BTCMODULES_INDEX {
         task.ext.when == null || task.ext.when
 
     script:
-        def indexes = ["GRCh38" : "https://storage.googleapis.com/btc-dshub-pipelines/scRNA/refData/GRCh38.tar"]
+        def indexes = ["GRCh38" : "https://www.dropbox.com/s/9bvocucv9qg5cn2/GRCh38.tar.gz?dl=0"]
         """
-        wget ${genome}.tar.gz ${indexes[genome]}
+        wget ${indexes[genome]} -O ${genome}.tar.gz
         mkdir ./indexes 
         tar -zxvf ${genome}.tar.gz -C ./indexes
         rm -Rf ${genome}.tar.gz

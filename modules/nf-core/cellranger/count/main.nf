@@ -9,8 +9,8 @@ process CELLRANGER_COUNT {
         path  reference
 
     output:
-        tuple val(sample), path("sample/${sample}/outs/*"), emit: outs
-        path "versions.yml"                               , emit: versions
+        tuple val(sample), path("${sample}/outs/*"), emit: outs
+        path "versions.yml"                        , emit: versions
 
     when:
         task.ext.when == null || task.ext.when
@@ -38,9 +38,9 @@ process CELLRANGER_COUNT {
 
     stub:
         """
-        mkdir -p sample/${sample}/outs/filtered_feature_bc_matrix
-        touch sample/${sample}/outs/filtered_feature_bc_matrix/barcodes.tsv.gz  features.tsv.gz  matrix.mtx.gz
-        touch sample/${sample}/outs/metrics_summary.csv
+        mkdir -p ${sample}/outs/filtered_feature_bc_matrix
+        touch ${sample}/outs/filtered_feature_bc_matrix/barcodes.tsv.gz  features.tsv.gz  matrix.mtx.gz
+        touch ${sample}/outs/metrics_summary.csv
         
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":

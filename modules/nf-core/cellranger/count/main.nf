@@ -38,9 +38,10 @@ process CELLRANGER_COUNT {
 
     stub:
         """
-        mkdir -p "sample/${sample}/outs/"
-        touch sample/${sample}/outs/fake_file.txt
-
+        mkdir -p sample/${sample}/outs/filtered_feature_bc_matrix
+        touch sample/${sample}/outs/filtered_feature_bc_matrix/barcodes.tsv.gz  features.tsv.gz  matrix.mtx.gz
+        touch sample/${sample}/outs/metrics_summary.csv
+        
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
             cellranger: \$(echo \$( cellranger --version 2>&1) | sed 's/^.*[^0-9]\\([0-9]*\\.[0-9]*\\.[0-9]*\\).*\$/\\1/' )

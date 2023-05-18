@@ -13,12 +13,14 @@ workflow SC_BASIC_QC {
     take:
         // TODO nf-core: edit input (take) channels
         ch_sample_table // channel: [ val(meta), [ bam ] ]
-        ch_meta_data // channel: path
+        ch_meta_data // path: /path/to/meta_data
         genome
 
     main:
-        // Channel versions
+
+        // Channel definitions
         ch_versions = Channel.empty()
+        ch_meta_data = Channel.fromPath(ch_meta_data)
 
         // Retrieving Cellranger indexes
         BTCMODULES_INDEX(genome)
@@ -30,19 +32,18 @@ workflow SC_BASIC_QC {
             .map { row -> tuple row[0], row[1 .. 2].flatten() }
 
         // Cellranger alignment
-        CELLRANGER_COUNT(ch_samples_grouped, BTCMODULES_INDEX.out.index)
-
-        /*
-        ch_cell_matrices = CELLRANGER_COUNT.out.cell_out.map{sample, outs -> [sample, outs.findAll {
-            it.toString().endsWith("metrics_summary.csv") || it.toString().endsWith("filtered_feature_bc_matrix")}]}
+        ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, BTCMODULES_INDEX.out.index)
+        ch_cell_matrices = ch_alignment.outs
+            .map{sample, files -> [sample, files.findAll{ it.toString().endsWith("metrics_summary.csv") || it.toString().endsWith("filtered_feature_bc_matrix") }]}
             .map{sample, files -> [sample, files[0], files[1]]}
 
         ch_cell_matrices = ch_cell_matrices
-            .combine(meta_channel)
+            .combine(ch_meta_data)
 
         // Performing QC steps
         SAMPLE_CELL_QC(ch_cell_matrices, scqc_script)
 
+        /*
         // Writing QC check
         ch_quality_report = SAMPLE_CELL_QC.out.metrics
             .collect()
@@ -62,11 +63,10 @@ workflow SC_BASIC_QC {
 
         ch_versions = ch_versions.mix(BTCMODULES_INDEX.out.versions.first())
         */
+
     emit:
         // TODO nf-core: edit emitted channels
         //ch_qc_approved = ch_qc_approved // channel: [ val(meta), [ bam ] ]
         //versions = ch_versions          // channel: [ versions.yml ]
-        //ch_samples_grouped
-        ch_sample_table
-
+        ch_cell_matrices
 }

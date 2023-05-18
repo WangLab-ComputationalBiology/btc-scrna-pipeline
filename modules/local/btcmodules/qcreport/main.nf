@@ -1,9 +1,9 @@
-process BTCMODULES_INDEX {
+process BTCMODULES_QCREPORT {
     
-    tag 'download'
+    tag "${project_name} - QC report"
     label 'process_single'
 
-    container "oandrefonseca/scaligners:1.0"
+    container "oandrefonseca/scbase:1.0"
 
     input:
         val(genome) // variable: GENOME

@@ -13,7 +13,7 @@ workflow INPUT_CHECK {
             .csv
             .splitCsv(header:true, sep:',')
             .map{ row -> tuple row.sample, row.fastq_1, row.fastq_2 }
-            .set{reads}
+            .set{ reads }
 
     emit:
         reads                                     // channel: [ val(meta), [ reads ] ]
@@ -21,7 +21,7 @@ workflow INPUT_CHECK {
 }
 
 // Function to get list of [ meta, [ fastq_1, fastq_2 ] ]
-// .map{create_fastq_channel(it)}
+// REMOVED - .map{create_fastq_channel(it)}
 
 def create_fastq_channel(LinkedHashMap row) {
     // create meta map

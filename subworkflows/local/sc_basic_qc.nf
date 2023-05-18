@@ -23,23 +23,16 @@ workflow SC_BASIC_QC {
         // Retrieving Cellranger indexes
         BTCMODULES_INDEX(genome)
 
-        ch_sample_table
-            .view()
-
         // Grouping fastq based on sample id
         ch_samples_grouped = ch_sample_table
-            .map {row -> tuple row.id, row.fastq_1, row.fastq_2 }
-            //.groupTuple(by: [0])
-            //.map { row -> tuple row[0], row[1 .. 2].flatten() }
-
-        ch_samples_grouped
-            .view()
-
-        /*
+            .map { row -> tuple row[0], row[1], row[2] }
+            .groupTuple(by: [0])
+            .map { row -> tuple row[0], row[1 .. 2].flatten() }
 
         // Cellranger alignment
         CELLRANGER_COUNT(ch_samples_grouped, BTCMODULES_INDEX.out.index)
 
+        /*
         ch_cell_matrices = CELLRANGER_COUNT.out.cell_out.map{sample, outs -> [sample, outs.findAll {
             it.toString().endsWith("metrics_summary.csv") || it.toString().endsWith("filtered_feature_bc_matrix")}]}
             .map{sample, files -> [sample, files[0], files[1]]}

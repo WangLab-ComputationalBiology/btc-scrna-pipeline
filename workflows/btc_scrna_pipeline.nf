@@ -48,7 +48,7 @@ workflow BTC_SCRNA_PIPELINE {
     SC_BASIC_QC(INPUT_CHECK.out.reads, ch_meta_data, params.genome)
     
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
-    ch_versions.view()
+    ch_versions
 }
 
 /*

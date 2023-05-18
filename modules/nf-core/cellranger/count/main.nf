@@ -1,31 +1,30 @@
 process CELLRANGER_COUNT {
-    tag "$meta.id"
-    label 'process_high'
+    tag "${sample}"
+    label 'process_medium'
 
     container "oandrefonseca/scaligners:1.0"
 
     input:
-        tuple val(meta), path(reads)
+        tuple val(sample), path(reads)
         path  reference
 
     output:
-        tuple val(meta), path("sample/${meta.id}/outs/*"), emit: outs
-        path "versions.yml"                              , emit: versions
+        tuple val(sample), path("sample/${sample}/outs/*"), emit: outs
+        path "versions.yml"                               , emit: versions
 
     when:
         task.ext.when == null || task.ext.when
 
     script:
         def args = task.ext.args ?: ''
-        def sample_arg = meta.samples.unique().join(",")
         def reference_name = reference.name
         """
             cellranger \\
                 count \\
-                --id='${meta.id}' \\
+                --id='${sample}' \\
                 --fastqs=. \\
                 --transcriptome=${reference_name} \\
-                --sample=${sample_arg} \\
+                --sample=${sample} \\
                 --include-introns=false \\
                 --localcores=${task.cpus} \\
                 --localmem=${task.memory.toGiga()} \\
@@ -39,8 +38,8 @@ process CELLRANGER_COUNT {
 
     stub:
         """
-        mkdir -p "sample/${meta.id}/outs/"
-        touch sample/${meta.id}/outs/fake_file.txt
+        mkdir -p "sample/${sample}/outs/"
+        touch sample/${sample}/outs/fake_file.txt
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":

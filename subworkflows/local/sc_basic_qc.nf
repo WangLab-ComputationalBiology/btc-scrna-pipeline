@@ -40,6 +40,7 @@ workflow SC_BASIC_QC {
         ch_cell_matrices = ch_cell_matrices
             .combine(ch_meta_data)
 
+        
         // Performing QC steps
         // SAMPLE_CELL_QC(ch_cell_matrices, scqc_script)
 

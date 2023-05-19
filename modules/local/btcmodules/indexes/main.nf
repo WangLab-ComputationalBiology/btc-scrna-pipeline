@@ -1,6 +1,6 @@
 process BTCMODULES_INDEX {
     
-    tag 'download'
+    tag "Retrieving ${genome}"
     label 'process_single'
 
     container "oandrefonseca/scaligners:1.0"

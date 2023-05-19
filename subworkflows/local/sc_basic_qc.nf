@@ -7,6 +7,7 @@
 include { CELLRANGER_COUNT } from '../../modules/nf-core/cellranger/count/main'
 include { CELLRANGER_MKGTF } from '../../modules/nf-core/cellranger/mkgtf/main'
 include { BTCMODULES_INDEX } from '../../modules/local/btcmodules/indexes/main'
+include { BTCMODULES_SEURAT_FILTER } from '../../modules/local/seurat/filtering/main.nf'
 
 workflow SC_BASIC_QC {
 
@@ -21,6 +22,13 @@ workflow SC_BASIC_QC {
         // Channel definitions
         ch_versions = Channel.empty()
         ch_meta_data = Channel.fromPath(ch_meta_data)
+
+        // Rmarkdown scripts 
+        scqc_script = "${workflow.projectDir}/notebook/01_quality_control.Rmd"
+        qc_table_script = "${workflow.projectDir}/notebook/02_quality_table_report.Rmd"
+        merge_script = "${workflow.projectDir}/notebook/03_merge_and_normalize.Rmd"
+        batch_script = "${workflow.projectDir}/notebook/04_batch_correction.Rmd"
+        cluster_script = "${workflow.projectDir}/notebook/05_cell_clustering.Rmd"
 
         // Retrieving Cellranger indexes
         BTCMODULES_INDEX(genome)
@@ -39,10 +47,12 @@ workflow SC_BASIC_QC {
 
         ch_cell_matrices = ch_cell_matrices
             .combine(ch_meta_data)
-
         
+        ch_cell_matrices
+            .view()
+
         // Performing QC steps
-        // SAMPLE_CELL_QC(ch_cell_matrices, scqc_script)
+        BTCMODULES_SEURAT_FILTER(ch_cell_matrices, scqc_script)
 
         /*
         // Writing QC check

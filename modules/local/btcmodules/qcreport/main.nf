@@ -1,44 +1,28 @@
 process BTCMODULES_QCREPORT {
+    /* Description */
     
     tag "${project_name} - QC report"
     label 'process_single'
 
-    container "oandrefonseca/scbase:1.0"
+    container 'oandrefonseca/scpackages:1.0'
 
     input:
-        val(genome) // variable: GENOME
+        tuple val(sample_id), path(matrices), path(csv_metrics), path(meta_data)
+        path(scqc_script)
 
     output:
-        path("indexes/${genome}"), emit: index
-        path "versions.yml"      , emit: versions
-
+        tuple val(sample_id), path("objects/*"), path("log/*.txt"), emit: status
+        path("${sample_id}_metrics_upgrade*.csv"), emit: metrics
+        path("${sample_id}_report.html")
+        path("figures/*")
 
     when:
         task.ext.when == null || task.ext.when
 
     script:
-        def indexes = ["GRCh38" : "https://www.dropbox.com/s/9bvocucv9qg5cn2/GRCh38.tar.gz?dl=0"]
         """
-        wget ${indexes[genome]} -O ${genome}.tar.gz
-        mkdir ./indexes 
-        tar -zxvf ${genome}.tar.gz -C ./indexes
-        rm -Rf ${genome}.tar.gz
-
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            btcmodules: ${genome} ${indexes[genome]}
-        END_VERSIONS
         """
     stub:
-        def indexes = ["GRCh38" : "https://www.dropbox.com/s/9bvocucv9qg5cn2/GRCh38.tar.gz?dl=0"]
         """
-        mkdir -p ./indexes/${genome}
-        
-        cat <<-END_VERSIONS > versions.yml
-        "${task.process}":
-            btcmodules: ${genome} ${indexes[genome]}
-        END_VERSIONS
-
-
         """
 }

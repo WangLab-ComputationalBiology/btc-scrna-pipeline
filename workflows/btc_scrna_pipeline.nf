@@ -16,8 +16,8 @@ for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true
 
 // Check mandatory parameters
 if (params.sample_table) { ch_sample_table = file(params.sample_table) } else { exit 1, 'Sample sheet not specified. Please, provide a --sample_table <PATH/TO/SAMMPLE_TABLE.csv> !' }
-if (params.meta_data) { ch_meta_data = file(params.meta_data) } else { exit 1, 'Meta-data not specified. Please, provide a --meta_data <PATH/TO/META_DATA.csv>' }
-if (params.project_name) { ch_project_name = params.project_name } else { exit 1, 'Project name not specified. Please, provide a --project_name <NAME>.' }
+if (params.meta_data) { meta_data = file(params.meta_data) } else { exit 1, 'Meta-data not specified. Please, provide a --meta_data <PATH/TO/META_DATA.csv>' }
+if (params.project_name) { project_name = params.project_name } else { exit 1, 'Project name not specified. Please, provide a --project_name <NAME>.' }
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -28,9 +28,10 @@ if (params.project_name) { ch_project_name = params.project_name } else { exit 1
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
-include { INPUT_CHECK   } from '../subworkflows/local/input_check'
-include { SC_BASIC_QC   } from '../subworkflows/local/sc_basic_qc'
-include { SC_BASIC_NORM } from '../subworkflows/local/sc_basic_norm'
+include { INPUT_CHECK             } from '../subworkflows/local/input_check'
+include { SC_BASIC_QC             } from '../subworkflows/local/sc_basic_qc'
+include { SC_BASIC_NORMALIZATION  } from '../subworkflows/local/sc_basic_normalization'
+include { SC_BASIC_STRATIFICATION } from '../subworkflows/local/sc_basic_stratification'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,17 +39,30 @@ include { SC_BASIC_NORM } from '../subworkflows/local/sc_basic_norm'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-// Info required for completion email and summary
-def multiqc_report = []
-
 workflow BTC_SCRNA_PIPELINE {
 
     ch_versions = Channel.empty()
 
+    // Description
     INPUT_CHECK(ch_sample_table)
-    SC_BASIC_QC(INPUT_CHECK.out.reads, ch_meta_data, params.genome)
 
-    SC_BASIC_NORM(
+    // Description
+    SC_BASIC_QC(INPUT_CHECK.out.reads, meta_data, params.genome)
+
+    // Description
+    SC_BASIC_NORMALIZATION(
+        SC_BASIC_QC.out
+    )
+
+    /*
+    // Description
+    SC_BASIC_STRATIFICATION(
+        
+    )
+
+
+    // Description
+    SC_BASIC_CLUSTER(
         SC_BASIC_QC.out
     )
 

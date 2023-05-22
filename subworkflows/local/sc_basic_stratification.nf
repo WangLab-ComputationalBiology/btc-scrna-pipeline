@@ -4,9 +4,9 @@
 //               https://nf-co.re/join
 // TODO nf-core: A subworkflow SHOULD import at least two modules
 
-include { SEURAT_FINDMARKER } from '../../../modules/local/seurat/findmarker'
+//include { SEURAT_FINDMARKER } from '../../../modules/local/seurat/findmarker'
 
-workflow SC_BASIC_CNV {
+workflow SC_BASIC_STRATIFICATION {
 
     take:
         // TODO nf-core: edit input (take) channels

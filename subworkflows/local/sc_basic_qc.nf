@@ -15,14 +15,14 @@ workflow SC_BASIC_QC {
     take:
         // TODO nf-core: edit input (take) channels
         ch_sample_table // channel: [ val(meta), [ bam ] ]
-        ch_meta_data // path: /path/to/meta_data
+        meta_data // path: /path/to/meta_data
         genome
 
     main:
 
         // Channel definitions
         ch_versions = Channel.empty()
-        ch_meta_data = Channel.fromPath(ch_meta_data)
+        ch_meta_data = Channel.fromPath(meta_data)
 
         // Rmarkdown scripts 
         scqc_script = "${workflow.projectDir}/notebook/01_quality_control.Rmd"

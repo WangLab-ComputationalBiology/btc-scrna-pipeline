@@ -1,5 +1,5 @@
 process SEURAT_NORMALIZATION {
-    tag "Running normalization and dimesionality reduction"
+    tag "Running normalization"
     label 'process_high'
 
     container "oandrefonseca/scpackages:1.0"

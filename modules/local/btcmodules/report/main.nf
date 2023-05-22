@@ -1,4 +1,4 @@
-process BTCMODULES_QC_TABLE {
+process BTCMODULES_QC_RENDER {
     /* Description */
 
     tag "Rendering QC Table"
@@ -32,7 +32,7 @@ process BTCMODULES_QC_TABLE {
         """
     stub:
         """
-
+            touch ${params.project_name}_project_metric_report.html
         """
 
 }

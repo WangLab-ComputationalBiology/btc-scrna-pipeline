@@ -7,16 +7,16 @@
 include { CELLRANGER_COUNT         } from '../../modules/nf-core/cellranger/count/main'
 include { CELLRANGER_MKGTF         } from '../../modules/nf-core/cellranger/mkgtf/main'
 include { BTCMODULES_INDEX         } from '../../modules/local/btcmodules/indexes/main'
-include { BTCMODULES_QC_FILTER     } from '../../modules/local/btcmodules/filtering/main'
-include { BTCMODULES_QC_TABLE      } from '../../modules/local/btcmodules/rendertable/main'
+include { SEURAT_FILTERING         } from '../../modules/local/btcmodules/filtering/main'
+include { BTCMODULES_QC_RENDER     } from '../../modules/local/btcmodules/report/main'
 
 workflow SC_BASIC_QC {
 
     take:
         // TODO nf-core: edit input (take) channels
-        ch_sample_table // channel: [ val(meta), [ bam ] ]
+        ch_sample_table // channel: [ val(sample), [ fastq ] ]
         meta_data // path: /path/to/meta_data
-        genome
+        genome // string: genome code
 
     main:
 
@@ -45,19 +45,19 @@ workflow SC_BASIC_QC {
 
         ch_cell_matrices = ch_cell_matrices
             .combine(ch_meta_data)
-        
+
         // Performing QC steps
-        BTCMODULES_QC_FILTER(ch_cell_matrices, scqc_script)
+        SEURAT_FILTERING(ch_cell_matrices, scqc_script)
 
         // Writing QC check
-        ch_quality_report = BTCMODULES_QC_FILTER.out.metrics
+        ch_quality_report = SEURAT_FILTERING.out.metrics
             .collect()
-   
+
         // Generating QC table
-        BTCMODULES_QC_TABLE(ch_quality_report, qc_table_script)
+        BTCMODULES_QC_RENDER(ch_quality_report, qc_table_script)
 
         // Filter poor quality samples
-        ch_qc_approved = BTCMODULES_QC_FILTER.out.status
+        ch_qc_approved = SEURAT_FILTERING.out.status
             .filter{sample, object, status -> status.toString().endsWith('SUCCESS.txt')}
             .map{sample, object, status -> object}
             .collect()
@@ -66,13 +66,12 @@ workflow SC_BASIC_QC {
             .ifEmpty{error 'No samples matched QC expectations.'}
             .view{'Done'}
 
-        /*
+        /* 
         ch_versions = ch_versions.mix(BTCMODULES_INDEX.out.versions.first())
         */
 
     emit:
         // TODO nf-core: edit emitted channels
-        //ch_qc_approved = ch_qc_approved // channel: [ val(meta), [ bam ] ]
+        ch_qc_approved = ch_qc_approved // channel: [ objects ]
         //versions = ch_versions          // channel: [ versions.yml ]
-        ch_qc_approved
 }

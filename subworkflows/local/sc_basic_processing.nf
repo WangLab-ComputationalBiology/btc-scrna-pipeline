@@ -4,10 +4,10 @@
 //               https://nf-co.re/join
 // TODO nf-core: A subworkflow SHOULD import at least two modules
 
-include { SEURAT_NORMALIZATION } from '../../modules/local/seurat/normalization/main'
-include { SEURAT_CLUSTERING    } from '../../modules/local/seurat/clustering/main'
+include { SEURAT_NORMALIZATION } from '../../modules/local/btcmodules/normalization/main'
+include { SEURAT_CLUSTERING    } from '../../modules/local/btcmodules/clustering/main'
 
-workflow SC_BASIC_NORMALIZATION {
+workflow SC_BASIC_PROCESSING {
 
     take:
         // TODO nf-core: edit input (take) channels
@@ -24,19 +24,17 @@ workflow SC_BASIC_NORMALIZATION {
             ch_qc_approved,
             merge_script
         )
-
-        ch_seurat_dump = SEURAT_NORMALIZATION.out.project_rds
+        ch_normalize_object = SEURAT_NORMALIZATION.out.project_rds
 
         // Description        
         SEURAT_CLUSTERING(          
-            ch_seurat_dump,
+            ch_normalize_object,
             cluster_script
         )
-
-        //ch_seurat_dump = SEURAT_NORMALIZATION.out.project_rds
+        ch_cluster_object = SEURAT_CLUSTERING.out.project_rds
 
     emit:
         // TODO nf-core: edit emitted channels
-        ch_seurat_dump
+        ch_cluster_object
 }
 

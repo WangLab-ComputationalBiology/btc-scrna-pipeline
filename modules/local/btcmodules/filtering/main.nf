@@ -1,4 +1,4 @@
-process BTCMODULES_QC_FILTER {
+process SEURAT_FILTERING {
     /* Description */
 
     tag "Applying QC on cells"

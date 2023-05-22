@@ -28,8 +28,9 @@ if (params.project_name) { ch_project_name = params.project_name } else { exit 1
 //
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
-include { INPUT_CHECK } from '../subworkflows/local/input_check'
-include { SC_BASIC_QC } from '../subworkflows/local/sc_basic_qc'
+include { INPUT_CHECK   } from '../subworkflows/local/input_check'
+include { SC_BASIC_QC   } from '../subworkflows/local/sc_basic_qc'
+include { SC_BASIC_NORM } from '../subworkflows/local/sc_basic_norm'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -46,9 +47,15 @@ workflow BTC_SCRNA_PIPELINE {
 
     INPUT_CHECK(ch_sample_table)
     SC_BASIC_QC(INPUT_CHECK.out.reads, ch_meta_data, params.genome)
-    
+
+    SC_BASIC_NORM(
+        SC_BASIC_QC.out
+    )
+
+    /*    
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
     ch_versions
+    */
 }
 
 /*

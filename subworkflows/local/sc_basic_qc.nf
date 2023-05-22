@@ -7,7 +7,8 @@
 include { CELLRANGER_COUNT         } from '../../modules/nf-core/cellranger/count/main'
 include { CELLRANGER_MKGTF         } from '../../modules/nf-core/cellranger/mkgtf/main'
 include { BTCMODULES_INDEX         } from '../../modules/local/btcmodules/indexes/main'
-include { BTCMODULES_SEURAT_FILTER } from '../../modules/local/seurat/filtering/main'
+include { BTCMODULES_QC_FILTER     } from '../../modules/local/btcmodules/filtering/main'
+include { BTCMODULES_QC_TABLE      } from '../../modules/local/btcmodules/rendertable/main'
 
 workflow SC_BASIC_QC {
 
@@ -26,9 +27,6 @@ workflow SC_BASIC_QC {
         // Rmarkdown scripts 
         scqc_script = "${workflow.projectDir}/notebook/01_quality_control.Rmd"
         qc_table_script = "${workflow.projectDir}/notebook/02_quality_table_report.Rmd"
-        merge_script = "${workflow.projectDir}/notebook/03_merge_and_normalize.Rmd"
-        batch_script = "${workflow.projectDir}/notebook/04_batch_correction.Rmd"
-        cluster_script = "${workflow.projectDir}/notebook/05_cell_clustering.Rmd"
 
         // Retrieving Cellranger indexes
         BTCMODULES_INDEX(genome)
@@ -48,22 +46,18 @@ workflow SC_BASIC_QC {
         ch_cell_matrices = ch_cell_matrices
             .combine(ch_meta_data)
         
-        ch_cell_matrices
-            .view()
-
         // Performing QC steps
-        BTCMODULES_SEURAT_FILTER(ch_cell_matrices, scqc_script)
+        BTCMODULES_QC_FILTER(ch_cell_matrices, scqc_script)
 
-        /*
         // Writing QC check
-        ch_quality_report = SAMPLE_CELL_QC.out.metrics
+        ch_quality_report = BTCMODULES_QC_FILTER.out.metrics
             .collect()
-    
+   
         // Generating QC table
-        QUALITY_TABLE(ch_quality_report, qc_table_script)
+        BTCMODULES_QC_TABLE(ch_quality_report, qc_table_script)
 
         // Filter poor quality samples
-        ch_qc_approved = SAMPLE_CELL_QC.out.status
+        ch_qc_approved = BTCMODULES_QC_FILTER.out.status
             .filter{sample, object, status -> status.toString().endsWith('SUCCESS.txt')}
             .map{sample, object, status -> object}
             .collect()
@@ -72,6 +66,7 @@ workflow SC_BASIC_QC {
             .ifEmpty{error 'No samples matched QC expectations.'}
             .view{'Done'}
 
+        /*
         ch_versions = ch_versions.mix(BTCMODULES_INDEX.out.versions.first())
         */
 
@@ -79,5 +74,5 @@ workflow SC_BASIC_QC {
         // TODO nf-core: edit emitted channels
         //ch_qc_approved = ch_qc_approved // channel: [ val(meta), [ bam ] ]
         //versions = ch_versions          // channel: [ versions.yml ]
-        ch_cell_matrices
+        ch_qc_approved
 }

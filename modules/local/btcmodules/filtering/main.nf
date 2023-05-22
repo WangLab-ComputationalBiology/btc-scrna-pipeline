@@ -1,12 +1,10 @@
-process BTCMODULES_SEURAT_FILTER {
+process BTCMODULES_QC_FILTER {
     /* Description */
 
-    tag "SeuratQC report"
+    tag "Applying QC on cells"
     label 'process_single'
 
     container 'oandrefonseca/scpackages:1.0'
-
-    publishDir "${params.project_name}/${sample_id}", mode: 'copyNoFollow'
 
     input:
         tuple val(sample_id), path(matrices), path(csv_metrics), path(meta_data)

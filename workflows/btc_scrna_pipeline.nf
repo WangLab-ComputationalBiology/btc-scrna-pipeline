@@ -61,8 +61,8 @@ workflow BTC_SCRNA_PIPELINE {
     )
 
     // Description
-    SC_BASIC_CLUSTER(
-        SC_BASIC_QC.out
+    SC_BASIC_TME(
+        SC_BASIC_STRATIFICATION.out.tme
     )
 
     /*    

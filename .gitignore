@@ -10,4 +10,5 @@ testing*
 *.pyc
 *.Rproj
 *.Rhistory
+*.RDS
 .Rproj.user/

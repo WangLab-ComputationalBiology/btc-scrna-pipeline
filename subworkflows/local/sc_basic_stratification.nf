@@ -1,10 +1,8 @@
-// TODO nf-core: If in doubt look at other nf-core/subworkflows to see how we are doing things! :)
-//               https://github.com/nf-core/modules/tree/master/subworkflows
-//               You can also ask for help via your pull request or on the #subworkflows channel on the nf-core Slack workspace:
-//               https://nf-co.re/join
-// TODO nf-core: A subworkflow SHOULD import at least two modules
+//
+// Description
+//
 
-//include { SEURAT_FINDMARKER } from '../../../modules/local/seurat/findmarker'
+//include { SEURAT_ } from '../../../modules/local/btcmodules/'
 
 workflow SC_BASIC_STRATIFICATION {
 

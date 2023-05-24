@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-"""Provide a command line tool to validate and transform tabular samplesheets."""
+"""
+    TO-DO: Provide a command line tool to validate and transform tabular samplesheets.
+"""
 
 import argparse
 import csv

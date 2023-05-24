@@ -153,11 +153,40 @@
                 }
             }
         },
-        "batch_and_clustering_options": {
-            "title": "Batch and clustering options",
+        "cell_stratification": {
+            "title": "Cell stratification",
+            "type": "object",
+            "description": "Description",
+            "default": ""
+        },
+        "batch_correction": {
+            "title": "Batch correction",
+            "type": "object",
+            "description": "Description",
+            "default": "",
+            "properties": {
+                "method": {
+                    "type": "string",
+                    "default": "multiple",
+                    "description": "Description"
+                },
+                "skip_batch": {
+                    "type": "boolean",
+                    "fa_icon": "fas fa-microchip",
+                    "hidden": true,
+                    "help_text": "Description.",
+                    "description": "Description"
+                }
+            },
+            "required": [
+                "method"
+            ]
+        },
+        "clustering_options": {
+            "title": "Clustering options",
             "type": "object",
             "fa_icon": "fab fa-acquisitions-incorporated",
-            "description": "Set the top limit for requested resources for any single job.",
+            "description": "Description",
             "help_text": "If you are running on a smaller system, a pipeline step requesting more resources than are available may cause the Nextflow to stop the run with an error. These options allow you to cap the maximum resources requested by any single job so that the pipeline will run on your system.\n\nNote that you can not _increase_ the resources requested by any job using these options. For that you will need your own configuration file. See [the nf-core website](https://nf-co.re/usage/configuration) for details.",
             "properties": {
                 "thr_resolution": {
@@ -165,21 +194,36 @@
                     "default": 0.25,
                     "fa_icon": "fas fa-microchip",
                     "hidden": true,
-                    "help_text": "Description."
-                },
-                "skip_batch": {
-                    "type": "boolean",
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "help_text": "Description.",
+                    "description": "Description",
+                    "enum": [
+                        0.1,
+                        0.25,
+                        0.5
+                    ],
+                    "minimum": 0.1,
+                    "maximum": 1
                 },
                 "skip_deg": {
                     "type": "boolean",
                     "fa_icon": "fas fa-microchip",
                     "hidden": true,
-                    "help_text": "Description."
+                    "help_text": "Description.",
+                    "description": "Description"
                 }
             }
+        },
+        "cell_annotation": {
+            "title": "Cell annotation",
+            "type": "object",
+            "description": "Description",
+            "default": ""
+        },
+        "new_group_5": {
+            "title": "New Group 5",
+            "type": "object",
+            "description": "Description",
+            "default": ""
         },
         "max_job_request_options": {
             "title": "Max job request options",
@@ -286,7 +330,19 @@
             "$ref": "#/definitions/quality_control_filters"
         },
         {
-            "$ref": "#/definitions/batch_and_clustering_options"
+            "$ref": "#/definitions/cell_stratification"
+        },
+        {
+            "$ref": "#/definitions/batch_correction"
+        },
+        {
+            "$ref": "#/definitions/clustering_options"
+        },
+        {
+            "$ref": "#/definitions/cell_annotation"
+        },
+        {
+            "$ref": "#/definitions/new_group_5"
         },
         {
             "$ref": "#/definitions/max_job_request_options"

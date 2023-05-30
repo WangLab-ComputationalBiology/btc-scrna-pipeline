@@ -4,3 +4,6 @@
 [submodule "container"]
 	path = container
 	url = https://github.com/WangLab-ComputationalBiology/btc-sc-containers.git
+[submodule "btc-sc-modules"]
+	path = btc-sc-modules
+	url = https://github.com/WangLab-ComputationalBiology/btc-sc-modules

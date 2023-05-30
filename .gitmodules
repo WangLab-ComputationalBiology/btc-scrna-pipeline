@@ -7,3 +7,6 @@
 [submodule "modules"]
 	path = modules
 	url = https://github.com/WangLab-ComputationalBiology/btc-sc-modules
+[submodule "btc-sc-modules"]
+	path = modules
+	url = https://github.com/WangLab-ComputationalBiology/btc-sc-modules

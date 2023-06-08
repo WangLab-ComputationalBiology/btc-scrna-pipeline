@@ -3,6 +3,8 @@ work/
 data/
 results/
 notebook/dev
+notebook/data
+notebook/figures
 Test/
 .DS_Store
 testing/

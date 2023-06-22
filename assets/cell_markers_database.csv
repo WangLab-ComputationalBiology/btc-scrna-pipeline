@@ -1,0 +1,390 @@
+cell_subset,cell_type,annotation,markers
+Lineage markers Subsets,Major cells,T-Cells,CD3D
+Lineage markers Subsets,Major cells,T-Cells,CD3E
+Lineage markers Subsets,Major cells,T-Cells,CD4
+Lineage markers Subsets,Major cells,T-Cells,CD8A
+Lineage markers Subsets,Major cells,T-Cells,CD8B
+Lineage markers Subsets,Major cells,NK Cells,NCAM1
+Lineage markers Subsets,Major cells,NK Cells,KLRG1
+Lineage markers Subsets,Major cells,NK Cells,FCGR3A
+Lineage markers Subsets,Major cells,NK Cells,NKG7
+Lineage markers Subsets,Major cells,NK Cells,GNLY
+Lineage markers Subsets,Major cells,NK Cells,CD160
+Lineage markers Subsets,Major cells,B/Plasma Cells,CD19
+Lineage markers Subsets,Major cells,B/Plasma Cells,MS4A1
+Lineage markers Subsets,Major cells,B/Plasma Cells,CD79A
+Lineage markers Subsets,Major cells,B/Plasma Cells,CD79B
+Lineage markers Subsets,Major cells,B/Plasma Cells,SDC1
+Lineage markers Subsets,Major cells,B/Plasma Cells,MZB1
+Lineage markers Subsets,Major cells,B/Plasma Cells,XBP1
+Lineage markers Subsets,Major cells,B/Plasma Cells,JCHAIN
+Lineage markers Subsets,Major cells,Myeloid,LYZ
+Lineage markers Subsets,Major cells,Myeloid,S100A8
+Lineage markers Subsets,Major cells,Myeloid,S100A9
+Lineage markers Subsets,Major cells,Myeloid,CD68
+Lineage markers Subsets,Major cells,Myeloid,CD14
+Lineage markers Subsets,Major cells,Myeloid,C1QB
+Lineage markers Subsets,Major cells,Myeloid,C1QC
+Lineage markers Subsets,Major cells,Endothelial Cells,PECAM1
+Lineage markers Subsets,Major cells,Endothelial Cells,VWF
+Lineage markers Subsets,Major cells,Endothelial Cells,ENG
+Lineage markers Subsets,Major cells,Endothelial Cells,MCAM
+Lineage markers Subsets,Major cells,Fibroblast,FAP
+Lineage markers Subsets,Major cells,Fibroblast,PDPN
+Lineage markers Subsets,Major cells,Fibroblast,COL1A2
+Lineage markers Subsets,Major cells,Fibroblast,DCN
+Lineage markers Subsets,Major cells,Fibroblast,COL3A1
+Lineage markers Subsets,Major cells,Fibroblast,COL6A1
+Lineage markers Subsets,Major cells,Epithelial,EPCAM
+Lineage markers Subsets,Major cells,Epithelial,MUC1
+Lineage markers Subsets,Major cells,Epithelial,ERBB2
+Lineage markers Subsets,Major cells,Epithelial,KRT8
+Lineage markers Subsets,Major cells,Epithelial,PGC
+Lineage markers Subsets,Major cells,Epithelial,GKN2
+Lineage markers Subsets,Major cells,Epithelial,SLC5A5
+Lineage markers Subsets,Major cells,Epithelial,FABP1
+Lineage markers Subsets,Major cells,Epithelial,KRT20
+T Cell Subsets,CD4 & CD8 T cells,Naive,CCR7
+T Cell Subsets,CD4 & CD8 T cells,Naive,LEF1
+T Cell Subsets,CD4 & CD8 T cells,Naive,SELL
+T Cell Subsets,CD4 & CD8 T cells,Naive,TCF7
+T Cell Subsets,CD4 & CD8 T cells,Naive,IL7R
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,CX3CR1
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,PRF1
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,GZMA
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,GZMB
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,GZMH
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,GNLY
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,FGFBP2
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,CX3CR1
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,KLRG1
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,FCGR3A
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,NKG7
+T Cell Subsets,CD4 & CD8 T cells,Cytotoxic,S1PR1
+T Cell Subsets,CD4 & CD8 T cells,Memory,EOMES
+T Cell Subsets,CD4 & CD8 T cells,Memory,ANXA1
+T Cell Subsets,CD4 & CD8 T cells,Memory,JUNB
+T Cell Subsets,CD4 & CD8 T cells,Memory,CD69
+T Cell Subsets,CD4 & CD8 T cells,Memory,CD44
+T Cell Subsets,CD4 & CD8 T cells,Memory,CD40LG
+T Cell Subsets,CD4 & CD8 T cells,Memory,NR4A1
+T Cell Subsets,CD4 & CD8 T cells,Memory,LTB
+T Cell Subsets,CD4 & CD8 T cells,Memory,TXNIP
+T Cell Subsets,CD4 & CD8 T cells,Memory,S1PR1
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,IFIT1
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,IFIT2
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,IFIT3
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,IFI44L
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,OAS1
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,OAS3
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,RSAD2
+T Cell Subsets,CD4 & CD8 T cells,Interferon Response,CMPK2
+T Cell Subsets,CD4T cells,Regulatory T cell,FOXP3
+T Cell Subsets,CD4T cells,Regulatory T cell,IL2RA
+T Cell Subsets,CD4T cells,Regulatory T cell,TNFRSF18
+T Cell Subsets,CD4T cells,Regulatory T cell,TNFRSF4
+T Cell Subsets,CD4T cells,Regulatory T cell,PRDM1
+T Cell Subsets,CD4T cells,Regulatory T cell,CD27
+T Cell Subsets,CD4T cells,Regulatory T cell,BATF
+T Cell Subsets,CD4T cells,Regulatory T cell,CD28
+T Cell Subsets,CD4T cells,T Follicular Helper Cell,CTLA4
+T Cell Subsets,CD4T cells,T Follicular Helper Cell,ICOS
+T Cell Subsets,CD4T cells,T Follicular Helper Cell,TIGIT
+T Cell Subsets,CD4T cells,T Follicular Helper Cell,PDCD1
+T Cell Subsets,CD4T cells,T Follicular Helper Cell,TOX2
+T Cell Subsets,CD4T cells,T Follicular Helper Cell,ITGAE
+T Cell Subsets,CD8T cells,Central Memory T Cell,CCR7
+T Cell Subsets,CD8T cells,Central Memory T Cell,SELL
+T Cell Subsets,CD8T cells,Central Memory T Cell,ANXA1
+T Cell Subsets,CD8T cells,Central Memory T Cell,ANXA2
+T Cell Subsets,CD8T cells,Central Memory T Cell,S1PR1
+T Cell Subsets,CD8T cells,Central Memory T Cell,IL7R
+T Cell Subsets,CD8T cells,Central Memory T Cell,CD74
+T Cell Subsets,CD8T cells,Central Memory T Cell,TYROBP
+T Cell Subsets,CD8T cells,Effector Memory T Cell,GZMK
+T Cell Subsets,CD8T cells,Effector Memory T Cell,CCL4
+T Cell Subsets,CD8T cells,Effector Memory T Cell,CCL5
+T Cell Subsets,CD8T cells,Effector Memory T Cell,NKG7
+T Cell Subsets,CD8T cells,Effector Memory T Cell,KLRG1
+T Cell Subsets,CD8T cells,Effector Memory T Cell,LYAR
+T Cell Subsets,CD8T cells,Effector Memory T Cell,GZMM
+T Cell Subsets,CD8T cells,Effector Memory T Cell,TXNIP
+T Cell Subsets,CD8T cells,Effector Memory T Cell,FCRL6
+T Cell Subsets,CD8T cells,Effector Memory T Cell,FGFBP2
+T Cell Subsets,CD8T cells,Effector Memory T Cell,KLRD1
+T Cell Subsets,CD8T cells,Effector Memory T Cell,CX3CR1
+T Cell Subsets,CD8T cells,Effector Memory T Cell,FCGR3A
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,ITGAE
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,XCL1
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,ZNF683
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,NR4A1
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,KLRC1
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,ITGA1
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,KLRD1
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,KLRF1
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,GNLY
+T Cell Subsets,CD8T cells,Tissue Resisdent Memory T Cell,IL32
+T Cell Subsets,CD8T cells,Exhausted T Cell,LAYN
+T Cell Subsets,CD8T cells,Exhausted T Cell,LAG3
+T Cell Subsets,CD8T cells,Exhausted T Cell,TIGIT
+T Cell Subsets,CD8T cells,Exhausted T Cell,PDCD1
+T Cell Subsets,CD8T cells,Exhausted T Cell,HAVCR2
+T Cell Subsets,CD8T cells,Exhausted T Cell,CTLA4
+T Cell Subsets,CD8T cells,Exhausted T Cell,ITGAE
+T Cell Subsets,CD8T cells,Exhausted T Cell,CXCL13
+T Cell Subsets,CD8T cells,Exhausted T Cell,ENTPD1
+T Cell Subsets,CD8T cells,Exhausted T Cell,GZMB
+T Cell Subsets,CD8T cells,Exhausted T Cell,IFNG
+T Cell Subsets,CD8T cells,Exhausted T Cell,CD27
+T Cell Subsets,CD8T cells,Exhausted T Cell,BATF
+T Cell Subsets,CD8T cells,Exhausted T Cell,TNFRSF9
+T Cell Subsets,CD8T cells,Exhausted T Cell,CD28
+T Cell Subsets,Other T cells,Gamma Delta T Cell,TRDV2
+T Cell Subsets,Other T cells,Gamma Delta T Cell,TRGV9
+T Cell Subsets,Other T cells,MAIT Cell,SLC4A10
+T Cell Subsets,Other T cells,MAIT Cell,KLRB1
+T Cell Subsets,Other T cells,MAIT Cell,ZBTB16
+T Cell Subsets,Other T cells,MAIT Cell,NCR3
+T Cell Subsets,Other T cells,Proliferative T Cell,MKI67
+T Cell Subsets,Other T cells,Proliferative T Cell,TUBB
+T Cell Subsets,Other T cells,NK T Cell,CD3D
+T Cell Subsets,Other T cells,NK T Cell,CD3E
+T Cell Subsets,Other T cells,NK T Cell,CD3G
+T Cell Subsets,Other T cells,NK T Cell,NCAM1
+T Cell Subsets,Other T cells,NK T Cell,KLRF1
+T Cell Subsets,Other T cells,NK T Cell,KLRD1
+T Cell Subsets,Other T cells,NK T Cell,FCGR3A
+B/Plasma Cell Subsets,B/Plasma Cell,Naive B Cell,BANK1
+B/Plasma Cell Subsets,B/Plasma Cell,Naive B Cell,SELL
+B/Plasma Cell Subsets,B/Plasma Cell,Naive B Cell,BACH2
+B/Plasma Cell Subsets,B/Plasma Cell,Naive B Cell,FCER2
+B/Plasma Cell Subsets,B/Plasma Cell,Naive B Cell,TCL1A
+B/Plasma Cell Subsets,B/Plasma Cell,Naive B Cell,IL4R
+B/Plasma Cell Subsets,B/Plasma Cell,Naive B Cell,CCR7
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,CD69
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,NR4A2
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,CD83
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,CXCR4
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,NFKB1
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,TNF
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,BCL6
+B/Plasma Cell Subsets,B/Plasma Cell,Activated B Cell,A4GALT
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,BCL2
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,CR2
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,TNFRSF13B
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,CD53
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,CD82
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,ITGB1
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,S100A4
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,S100A10
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,CRIP1
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,CD80
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,TLR9
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,CD27
+B/Plasma Cell Subsets,B/Plasma Cell,Memory B Cell,CD38
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,JCHAIN
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,MZB1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,XBP1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,SDC1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,TNFRSF17
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,JSRP1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHM
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHD
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHG1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHG2
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHG3
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHG4
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHA1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasma IgAGMD+,IGHA2
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,MKI67
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,TUBB
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,STMN1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,TYMS
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,CD74
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DMA
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DMB
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DOA
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DOB
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DPA1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DPB1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DQA1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DQA2
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DQB1
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DQB2
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DRA
+B/Plasma Cell Subsets,B/Plasma Cell,Plasmablast,HLA-DRB1
+Myeloid Cell Subsets,Monocyte,CD14+ Monocytes,CD14
+Myeloid Cell Subsets,Monocyte,CD14+ Monocytes,VCAN
+Myeloid Cell Subsets,Monocyte,CD14+ Monocytes,S100A8
+Myeloid Cell Subsets,Monocyte,CD14+ Monocytes,S100A9
+Myeloid Cell Subsets,Monocyte,CD14+ Monocytes,FCN1
+Myeloid Cell Subsets,Monocyte,CD16+ Monocytes,FCGR3A
+Myeloid Cell Subsets,Monocyte,CD16+ Monocytes,LST1
+Myeloid Cell Subsets,Monocyte,CD16+ Monocytes,LILRB2
+Myeloid Cell Subsets,Monocyte,CD16+ Monocytes,CDKN1C
+Myeloid Cell Subsets,Monocyte,CD16+ Monocytes,FCN1
+Myeloid Cell Subsets,Macrophage,Macrophage_1,INHBA
+Myeloid Cell Subsets,Macrophage,Macrophage_1,IL1RN
+Myeloid Cell Subsets,Macrophage,Macrophage_1,CCL4
+Myeloid Cell Subsets,Macrophage,Macrophage_1,CCL20
+Myeloid Cell Subsets,Macrophage,Macrophage_2,NLRP3
+Myeloid Cell Subsets,Macrophage,Macrophage_2,EREG
+Myeloid Cell Subsets,Macrophage,Macrophage_2,IL1B
+Myeloid Cell Subsets,Macrophage,Macrophage_3,LYVE1
+Myeloid Cell Subsets,Macrophage,Macrophage_3,PLTP
+Myeloid Cell Subsets,Macrophage,Macrophage_3,SEPP1
+Myeloid Cell Subsets,Macrophage,Macrophage_4,C1QC
+Myeloid Cell Subsets,Macrophage,Macrophage_4,C1QA
+Myeloid Cell Subsets,Macrophage,Macrophage_4,APOE
+Myeloid Cell Subsets,Macrophage,Macrophage_4,APOC1
+Myeloid Cell Subsets,Macrophage,Macrophage_5,FABP5
+Myeloid Cell Subsets,Macrophage,Macrophage_5,FN1
+Myeloid Cell Subsets,Macrophage,Macrophage_5,PHLDA1
+Myeloid Cell Subsets,Macrophage,Macrophage_5,CCL2
+Myeloid Cell Subsets,Macrophage,Macrophage_6,ATF3
+Myeloid Cell Subsets,Macrophage,Macrophage_6,HSPA1B
+Myeloid Cell Subsets,Macrophage,Macrophage_6,ZNF331
+Myeloid Cell Subsets,Macrophage,Macrophage_6,NR4A2
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_1,FCGR3A
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_1,FTL
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_1,SERPINA1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_1,LST1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_1,AIF1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_2,AXL
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_2,PPP1R14A
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_2,SIGLEC6
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_2,CD22
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_2,DAB2
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_3,GZMB
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_3,IGJ
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_3,AK128525
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_3,SERPINF1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_3,ITM2C
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_3,LILRA4
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_4,S100A8
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_4,S100A9
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_4,VCAN
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_4,LYZ
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_4,ANXA1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_5,CD1C
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_5,FCER1A
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_5,CLEC10A
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_6,CLEC9A
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_6,C1ORF54
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_6,HLA-DPA1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_6,CADM1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_6,CAMK2D
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_6,XCR1
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_7,LAMP3
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_7,CCR7
+Myeloid Cell Subsets,Dendritic Cell Subsets,DC_7,FSCN1
+Myeloid Cell Subsets,Mast Subsets,Mast,TPSAB1
+Myeloid Cell Subsets,Mast Subsets,Mast,TPSB2
+Myeloid Cell Subsets,Mast Subsets,Mast,KIT
+Myeloid Cell Subsets,Mast Subsets,Mast,CPA3
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,PROX1
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,LYVE1
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,FLT4
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,PDPN
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,CCL21
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,SEMA3A
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,SEMA3D
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,TBX1
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,HOXD3
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,NR2F1
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,KDR
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,GPR182
+Stromal Cell Subsets,Endothelial Cell,Lymphatic,TEK
+Stromal Cell Subsets,Endothelial Cell,Vascular,ENG
+Stromal Cell Subsets,Endothelial Cell,Vascular,PCDH17
+Stromal Cell Subsets,Endothelial Cell,Vascular,CLEC14A
+Stromal Cell Subsets,Endothelial Cell,Vascular,CLEC1A
+Stromal Cell Subsets,Endothelial Cell,Vascular,ESAM
+Stromal Cell Subsets,Endothelial Cell,Vascular,ITM2A
+Stromal Cell Subsets,Endothelial Cell,Vascular,BMPR2
+Stromal Cell Subsets,Endothelial Cell,Vascular,FLT1
+Stromal Cell Subsets,Endothelial Cell,Vascular,ADGRL4
+Stromal Cell Subsets,Endothelial Cell,Vascular,VIPR1
+Stromal Cell Subsets,Endothelial Cell,Vascular,PLXNA2
+Stromal Cell Subsets,Endothelial Cell,Vascular,FZD4
+Stromal Cell Subsets,Endothelial Cell,Vascular,IL4R
+Stromal Cell Subsets,Endothelial Cell,Arterial,EFNB2
+Stromal Cell Subsets,Endothelial Cell,Arterial,SOX17
+Stromal Cell Subsets,Endothelial Cell,Arterial,BMX
+Stromal Cell Subsets,Endothelial Cell,Arterial,SEMA3G
+Stromal Cell Subsets,Endothelial Cell,Arterial,HEY1
+Stromal Cell Subsets,Endothelial Cell,Arterial,LTBP4
+Stromal Cell Subsets,Endothelial Cell,Arterial,FBLN5
+Stromal Cell Subsets,Endothelial Cell,Arterial,GJA5
+Stromal Cell Subsets,Endothelial Cell,Arterial,GJA4
+Stromal Cell Subsets,Endothelial Cell,Capillary,CA4
+Stromal Cell Subsets,Endothelial Cell,Capillary,PRX
+Stromal Cell Subsets,Endothelial Cell,Capillary,RGCC
+Stromal Cell Subsets,Endothelial Cell,Capillary,SPARC
+Stromal Cell Subsets,Endothelial Cell,Capillary,SGK1
+Stromal Cell Subsets,Endothelial Cell,Venous,NR2F2
+Stromal Cell Subsets,Endothelial Cell,Venous,VCAM1
+Stromal Cell Subsets,Endothelial Cell,Venous,ACKR1
+Stromal Cell Subsets,Endothelial Cell,Venous,SELP
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,EDNRB
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,TBX2
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,FOXP2
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,CLEC4E
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,SPON2
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,PRKG1
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,CHRM2
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,S100A4
+Stromal Cell Subsets,Endothelial Cell,Aerocyte,EDA
+Stromal Cell Subsets,Endothelial Cell,General Capillary,GPIHBP1
+Stromal Cell Subsets,Endothelial Cell,General Capillary,CD36
+Stromal Cell Subsets,Endothelial Cell,General Capillary,FCN3
+Stromal Cell Subsets,Endothelial Cell,General Capillary,BTNL9
+Stromal Cell Subsets,Endothelial Cell,General Capillary,BTNL8
+Stromal Cell Subsets,Endothelial Cell,General Capillary,CD14
+Stromal Cell Subsets,Endothelial Cell,General Capillary,IL7R
+Stromal Cell Subsets,Endothelial Cell,General Capillary,IL18R1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,ACTA2
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,TAGLN
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,BGN
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,IGFBP7
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,TPM1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,TPM2
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,COL1A1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,COL10A1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,POSTN
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,MYL9
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,MYH11
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,PDPN
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,PDGFRA
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CSF2
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,IL6
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CXCL1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CXCL14
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CXCL12
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CXCL13
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CFD
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,C1QA
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,C1QB
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,C1QC
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CD74
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,SLPI
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,HLA-DRA
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,HLA-DPA1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,HLA-DQA1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CRYAB
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,MYH11
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,ACTG2
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,PGA3
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,ACTA2
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,TAGLN
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CAV1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,MYL9
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,TAGLN
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,PDGFRB
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,MCAM
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,RGS5
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CSPG4
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,ESAM
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,ANO1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,CNN1
+Stromal Cell Subsets,Fibroblast Subsets,Fibroblast,NES

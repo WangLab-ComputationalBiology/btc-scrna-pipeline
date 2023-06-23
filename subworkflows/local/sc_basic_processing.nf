@@ -2,8 +2,8 @@
 // Description
 //
 
-include { SEURAT_NORMALIZATION } from '../../modules/local/btcmodules/normalization/main'
-include { SEURAT_CLUSTERING    } from '../../modules/local/btcmodules/clustering/main'
+include { SCBTC_NORMALIZATION } from '../../modules/local/btcmodules/normalization/main'
+include { SCBTC_CLUSTERING    } from '../../modules/local/btcmodules/clustering/main'
 
 workflow SC_BASIC_PROCESSING {
 

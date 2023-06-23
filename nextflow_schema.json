@@ -1,60 +1,42 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/btcscrnapipeline/master/nextflow_schema.json",
-    "title": "nf-core/btcscrnapipeline pipeline parameters",
-    "description": "A nextflow pipeline for single-cell multimodal applications",
+    "$id": "https://raw.githubusercontent.com/nf-core/test/master/nextflow_schema.json",
+    "title": "nf-core/test pipeline parameters",
+    "description": "BTC scRNA Pipeline",
     "type": "object",
     "definitions": {
-        "input_output_options": {
-            "title": "Input/output options",
-            "type": "object",
-            "fa_icon": "fas fa-terminal",
-            "description": "Define where the pipeline should find input data and save output data.",
-            "required": [
-                "sample_table",
-                "meta_data",
-                "project_name"
-            ],
-            "properties": {
-                "sample_table": {
-                    "type": "string",
-                    "format": "file-path",
-                    "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "schema": "assets/schema_input.json",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/btcscrnapipeline/usage#samplesheet-input).",
-                    "fa_icon": "fas fa-file-csv"
-                },
-                "meta_data": {
-                    "type": "string",
-                    "format": "file-path",
-                    "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "schema": "assets/schema_input.json",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/btcscrnapipeline/usage#samplesheet-input).",
-                    "fa_icon": "fas fa-file-csv"
-                },
-                "project_name": {
-                    "type": "string",
-                    "format": "directory-path",
-                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
-                    "fa_icon": "fas fa-folder-open"
-                }
-            }
-        },
-        "reference_genome_options": {
-            "title": "Reference genome options",
+        "project_parameters": {
+            "title": "Project parameters",
             "type": "object",
             "fa_icon": "fas fa-dna",
             "description": "Reference genome related files and options required for the workflow.",
             "properties": {
+                "sample_table": {
+                    "type": "string",
+                    "default": "./assets/test_sample_table.csv",
+                    "description": "Path to sample table"
+                },
+                "meta_data": {
+                    "type": "string",
+                    "default": "./assets/test_meta_data.csv",
+                    "fa_icon": "fas fa-address-card",
+                    "description": "Path to meta-data"
+                },
+                "project_name": {
+                    "type": "string",
+                    "default": "Test",
+                    "description": "Project name"
+                },
+                "cancer_type": {
+                    "type": "string",
+                    "default": "None"
+                },
                 "genome": {
                     "type": "string",
-                    "description": "Name of genomes reference.",
+                    "description": "Genome name",
                     "fa_icon": "fas fa-book",
-                    "help_text": "If using a reference genome configured in the pipeline using genomes, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details."
+                    "help_text": "If using a reference genome configured in the pipeline using iGenomes, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details.",
+                    "default": "GRCh38"
                 },
                 "fasta": {
                     "type": "string",
@@ -63,167 +45,228 @@
                     "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
                     "description": "Path to FASTA genome file.",
                     "help_text": "This parameter is *mandatory* if `--genome` is not specified. If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.",
-                    "fa_icon": "far fa-file-code",
-                    "hidden": true
-                },
-                "annotation": {
-                    "type": "string",
-                    "format": "file-path",
-                    "mimetype": "text/plain",
-                    "pattern": "^\\S+\\.fn?a(sta)?(\\.gz)?$",
-                    "description": "Path to GTF annotation file.",
-                    "help_text": "Description",
-                    "fa_icon": "far fa-file-code",
-                    "hidden": true
+                    "fa_icon": "far fa-file-code"
                 }
-            },
-            "required": [
-                "genome"
-            ]
+            }
         },
-        "quality_control_filters": {
-            "title": "Quality control options",
+        "quality_control_parameters": {
+            "title": "Quality Control parameters",
             "type": "object",
-            "fa_icon": "fas fa-dna",
-            "description": "Quality control related parameters required for the workflow.",
+            "description": "",
+            "default": "",
             "properties": {
                 "thr_estimate_n_cells": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 300,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 300
                 },
                 "thr_mean_reads_per_cells": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 25000,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 25000
                 },
                 "thr_median_genes_per_cell": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 900,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 900
                 },
                 "thr_median_umi_per_cell": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 1000,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 1000
                 },
                 "thr_n_feature_rna_min": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 300,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 300
                 },
                 "thr_n_feature_rna_max": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 7500,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 7500
                 },
                 "thr_percent_mito": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 25,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 25
                 },
                 "thr_n_observed_cells": {
                     "type": "integer",
-                    "description": "Description.",
-                    "default": 300,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description."
+                    "default": 300
                 }
             }
         },
-        "cell_stratification": {
-            "title": "Cell stratification",
+        "normalization_parameters": {
+            "title": "Normalization parameters",
             "type": "object",
-            "description": "Description",
-            "default": ""
-        },
-        "batch_correction": {
-            "title": "Batch correction",
-            "type": "object",
-            "description": "Description",
+            "description": "",
             "default": "",
             "properties": {
-                "method": {
+                "input_integration_dimension": {
                     "type": "string",
-                    "default": "multiple",
-                    "description": "Description"
+                    "default": "auto"
                 },
-                "skip_batch": {
-                    "type": "boolean",
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description.",
-                    "description": "Description"
-                }
-            },
-            "required": [
-                "method"
-            ]
-        },
-        "clustering_options": {
-            "title": "Clustering options",
-            "type": "object",
-            "fa_icon": "fab fa-acquisitions-incorporated",
-            "description": "Description",
-            "help_text": "If you are running on a smaller system, a pipeline step requesting more resources than are available may cause the Nextflow to stop the run with an error. These options allow you to cap the maximum resources requested by any single job so that the pipeline will run on your system.\n\nNote that you can not _increase_ the resources requested by any job using these options. For that you will need your own configuration file. See [the nf-core website](https://nf-co.re/usage/configuration) for details.",
-            "properties": {
-                "thr_resolution": {
-                    "type": "number",
-                    "default": 0.25,
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description.",
-                    "description": "Description",
-                    "enum": [
-                        0.1,
-                        0.25,
-                        0.5
-                    ],
-                    "minimum": 0.1,
-                    "maximum": 1
+                "input_reduction_step": {
+                    "type": "string",
+                    "default": "None"
                 },
-                "skip_deg": {
-                    "type": "boolean",
-                    "fa_icon": "fas fa-microchip",
-                    "hidden": true,
-                    "help_text": "Description.",
-                    "description": "Description"
+                "thr_n_features": {
+                    "type": "integer",
+                    "default": 2000
                 }
             }
         },
-        "cell_annotation": {
-            "title": "Cell annotation",
+        "clustering_parameters": {
+            "title": "Clustering parameters",
             "type": "object",
-            "description": "Description",
-            "default": ""
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_cluster_step": {
+                    "type": "string",
+                    "default": "None"
+                },
+                "input_features_plot": {
+                    "type": "string",
+                    "default": "LYZ;CCL5;IL32;PTPRCAP;FCGR3A;PF4;PTPRC"
+                },
+                "input_group_plot": {
+                    "type": "string",
+                    "default": "source_name;Sort"
+                },
+                "thr_resolution": {
+                    "type": "number",
+                    "default": 0.25
+                },
+                "thr_proportion": {
+                    "type": "number",
+                    "default": 0.25
+                }
+            }
         },
-        "new_group_5": {
-            "title": "New Group 5",
+        "stratification_parameters": {
+            "title": "Stratification parameters",
             "type": "object",
-            "description": "Description",
-            "default": ""
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_stratification_method": {
+                    "type": "string",
+                    "default": "infercnv_label"
+                },
+                "thr_cluster_size": {
+                    "type": "integer",
+                    "default": 1000
+                },
+                "thr_consensus_score": {
+                    "type": "integer",
+                    "default": 2
+                }
+            }
+        },
+        "cell_annotations_parameters": {
+            "title": "Cell annotations parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_cell_markers_db": {
+                    "type": "string",
+                    "default": "./assets/cell_markers_database.csv"
+                },
+                "input_annotation_level": {
+                    "type": "string",
+                    "default": "Major cells"
+                }
+            }
+        },
+        "batch_correction_parameters": {
+            "title": "Batch correction parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_batch_step": {
+                    "type": "string",
+                    "default": "None"
+                },
+                "input_integration_method": {
+                    "type": "string",
+                    "default": "all"
+                },
+                "input_target_variables": {
+                    "type": "string",
+                    "default": "batch"
+                }
+            }
+        },
+        "batch_evaluation_parameters": {
+            "title": "Batch Evaluation parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_integration_evaluate": {
+                    "type": "string",
+                    "default": "all"
+                },
+                "input_lisi_variables": {
+                    "type": "string",
+                    "default": "cLISI;iLISI"
+                },
+                "input_auto_selection": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "thr_cell_proportion": {
+                    "type": "number",
+                    "default": 0.3
+                }
+            }
+        },
+        "differential_expression_parameters": {
+            "title": "Differential Expression parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_deg_step": {
+                    "type": "string",
+                    "default": "None"
+                },
+                "input_top_deg": {
+                    "type": "integer",
+                    "default": 20
+                },
+                "thr_fold_change": {
+                    "type": "number",
+                    "default": 0.25
+                },
+                "thr_min_percentage": {
+                    "type": "number",
+                    "default": 0.1
+                },
+                "opt_hgv_filter": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "meta_program_parameters": {
+            "title": "Meta-program parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_meta_step": {
+                    "type": "string",
+                    "default": "None"
+                },
+                "input_meta_programs_db": {
+                    "type": "string",
+                    "default": "./assets/meta_programs_database.csv"
+                },
+                "input_cell_category": {
+                    "type": "string",
+                    "default": "Malignant"
+                },
+                "input_heatmap_annotation": {
+                    "type": "string",
+                    "default": "source_name;seurat_clusters"
+                }
+            }
         },
         "max_job_request_options": {
             "title": "Max job request options",
@@ -285,14 +328,13 @@
                     "description": "Method used to save pipeline results to output directory.",
                     "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
                     "fa_icon": "fas fa-copy",
-                    "enum": [
-                        "symlink",
-                        "rellink",
-                        "link",
-                        "copy",
-                        "copyNoFollow",
-                        "move"
-                    ],
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "hidden": true
+                },
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "Do not use coloured log outputs.",
+                    "fa_icon": "fas fa-palette",
                     "hidden": true
                 },
                 "tracedir": {
@@ -321,28 +363,34 @@
     },
     "allOf": [
         {
-            "$ref": "#/definitions/input_output_options"
+            "$ref": "#/definitions/project_parameters"
         },
         {
-            "$ref": "#/definitions/reference_genome_options"
+            "$ref": "#/definitions/quality_control_parameters"
         },
         {
-            "$ref": "#/definitions/quality_control_filters"
+            "$ref": "#/definitions/normalization_parameters"
         },
         {
-            "$ref": "#/definitions/cell_stratification"
+            "$ref": "#/definitions/clustering_parameters"
         },
         {
-            "$ref": "#/definitions/batch_correction"
+            "$ref": "#/definitions/stratification_parameters"
         },
         {
-            "$ref": "#/definitions/clustering_options"
+            "$ref": "#/definitions/cell_annotations_parameters"
         },
         {
-            "$ref": "#/definitions/cell_annotation"
+            "$ref": "#/definitions/batch_correction_parameters"
         },
         {
-            "$ref": "#/definitions/new_group_5"
+            "$ref": "#/definitions/batch_evaluation_parameters"
+        },
+        {
+            "$ref": "#/definitions/differential_expression_parameters"
+        },
+        {
+            "$ref": "#/definitions/meta_program_parameters"
         },
         {
             "$ref": "#/definitions/max_job_request_options"

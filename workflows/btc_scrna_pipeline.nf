@@ -49,21 +49,27 @@ workflow BTC_SCRNA_PIPELINE {
     // Description
     SC_BASIC_QC(INPUT_CHECK.out.reads, meta_data, params.genome)
 
+    /*
     // Description
     SC_BASIC_PROCESSING(
         SC_BASIC_QC.out
     )
 
-    /*
+
     // Description
     SC_BASIC_STRATIFICATION(
         SC_BASIC_NORMALIZATION.out
     )
+    */
 
+    /*
+    
     // Description
-    SC_BASIC_TME(
+    SC_INTER_NORMAL(
         SC_BASIC_STRATIFICATION.out.tme
     )
+
+    SC_INTER_MALIGNANT()
 
     /*    
     ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)

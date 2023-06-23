@@ -1,0 +1,1 @@
+nextflow run main.nf --sample_table test_sample_table.csv --meta_data test_meta_data.csv

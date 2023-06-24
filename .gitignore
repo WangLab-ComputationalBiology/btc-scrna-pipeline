@@ -6,6 +6,7 @@ notebook/dev
 notebook/data
 notebook/figures
 Test/
+Stub/
 .DS_Store
 testing/
 testing*

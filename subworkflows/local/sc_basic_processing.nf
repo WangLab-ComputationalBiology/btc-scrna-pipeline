@@ -2,7 +2,7 @@
 // Description
 //
 
-include { SCBTC_NORMALIZATION } from '../../modules/local/btcmodules/normalization/main'
+include { SCBTC_MERGE         } from '../../modules/local/btcmodules/merge/main'
 include { SCBTC_CLUSTERING    } from '../../modules/local/btcmodules/clustering/main'
 
 workflow SC_BASIC_PROCESSING {
@@ -10,26 +10,30 @@ workflow SC_BASIC_PROCESSING {
     take:
         // TODO nf-core: edit input (take) channels
         ch_qc_approved // channel: [ val(meta), [ bam ] ]
+        input_cluster_step
 
     main:
 
         // Rmarkdown scripts 
-        merge_script = "${workflow.projectDir}/notebook/03_merge_and_normalize.Rmd"
-        cluster_script = "${workflow.projectDir}/notebook/05_cell_clustering.Rmd"
+        merge_script   = "${workflow.projectDir}/notebook/notebook_merge.Rmd"
+        cluster_script = "${workflow.projectDir}/notebook/notebook_cell_clustering.Rmd"
 
         // Description
-        SEURAT_NORMALIZATION(
+        SCBTC_MERGE(
             ch_qc_approved,
             merge_script
         )
-        ch_normalize_object = SEURAT_NORMALIZATION.out.project_rds
+
+        ch_normalize_object = SCBTC_MERGE.out.project_rds
 
         // Description        
-        SEURAT_CLUSTERING(          
+        SCBTC_CLUSTERING(          
             ch_normalize_object,
-            cluster_script
+            cluster_script,
+            input_cluster_step
         )
-        ch_cluster_object = SEURAT_CLUSTERING.out.project_rds
+
+        ch_cluster_object = SCBTC_CLUSTERING.out.project_rds      
 
     emit:
         // TODO nf-core: edit emitted channels

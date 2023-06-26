@@ -21,10 +21,9 @@ workflow SC_BASIC_STRATIFICATION {
             input_cancer_type
         )
         
-        ch_stratifcation_object = SCBTC_STRATIFICATION.out.project_rds
+        ch_stratifcation = SCBTC_STRATIFICATION.out.project_rds
 
     emit:
-        // TODO nf-core: edit emitted channels
-        ch_stratifcation_object
+        ch_stratifcation
 }
 

@@ -34,6 +34,8 @@ include { SC_BASIC_QC              } from '../subworkflows/local/sc_basic_qc'
 include { SC_BASIC_PROCESSING      } from '../subworkflows/local/sc_basic_processing'
 include { SC_BASIC_STRATIFICATION  } from '../subworkflows/local/sc_basic_stratification'
 include { SC_BASIC_CELL_ANNOTATION } from '../subworkflows/local/sc_basic_annotation'
+include { SC_INTERMEDIATE_NORMAL   } from '../subworkflows/local/sc_intermediate_normal'
+include { SC_INTERMEDIATE_CANCER   } from '../subworkflows/local/sc_intermediate_cancer'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -45,47 +47,52 @@ workflow BTC_SCRNA_PIPELINE {
 
     ch_versions = Channel.empty()
 
-    // Description
+    // Checking sample input
     INPUT_CHECK(sample_table)
 
-    // Description
+    // Basic quality control
     SC_BASIC_QC(
         INPUT_CHECK.out.reads,
         meta_data,
         params.genome
     )
     
-    // Description
+    // Normalization and clustering
     SC_BASIC_PROCESSING(
         SC_BASIC_QC.out,
         "main"
     )
 
-    // Description
+    // Performing cell stratification
     SC_BASIC_STRATIFICATION(
         SC_BASIC_PROCESSING.out,
         cancer_type
     )
-    
-    // Description
+
+    // Loading nonMalignant
+    ch_normal = SC_BASIC_STRATIFICATION.out.
+        map{files -> [files.find{ it.toString().contains("nonMalignant") }]}
+
     SC_BASIC_CELL_ANNOTATION(
-        SC_BASIC_STRATIFICATION.out
+        ch_normal
     )
 
-    /* 
-    // Description
-
-    // Description
+    // Analyzing normal/nonMalignant cells
     SC_INTERMEDIATE_NORMAL(
-        SC_BASIC_STRATIFICATION.out.tme
+        SC_BASIC_CELL_ANNOTATION.out,
+        "nonMalignant"
     )
 
-    SC_INTERMEDIATE_MALIGNANT()
+    // Loading Malignant cells
+    ch_cancer = SC_BASIC_STRATIFICATION.out.
+        map{files -> [files.find{ it.toString().contains("Malignant") }]}
 
-    /*    
-    ch_versions = ch_versions.mix(INPUT_CHECK.out.versions)
-    ch_versions
-    */
+    // Analyzing cancer/Malignant cells
+    SC_INTERMEDIATE_CANCER(
+        ch_cancer,
+        "Malignant"
+    ) 
+
 }
 
 /*
@@ -96,6 +103,6 @@ workflow BTC_SCRNA_PIPELINE {
 
 workflow.onComplete {
 
-    log.info(workflow.success ? "May the Force be with you!" : "Please check your inputs.")
+    log.info(workflow.success ? "All done!" : "Please check your inputs.")
 
 }

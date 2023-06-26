@@ -24,19 +24,19 @@ workflow SC_BASIC_PROCESSING {
             merge_script
         )
 
-        ch_normalize_object = SCBTC_MERGE.out.project_rds
+        ch_normalize = SCBTC_MERGE.out.project_rds
 
         // Description        
         SCBTC_CLUSTERING(          
-            ch_normalize_object,
+            ch_normalize,
             cluster_script,
             input_cluster_step
         )
 
-        ch_cluster_object = SCBTC_CLUSTERING.out.project_rds      
+        ch_cluster = SCBTC_CLUSTERING.out.project_rds      
 
     emit:
         // TODO nf-core: edit emitted channels
-        ch_cluster_object
+        ch_cluster
 }
 

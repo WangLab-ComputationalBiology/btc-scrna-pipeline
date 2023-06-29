@@ -12,7 +12,7 @@ workflow SC_BASIC_STRATIFICATION {
 
     main:
         // Rmarkdown scripts 
-        stratification_script   = "${workflow.projectDir}/notebook_cell_stratification.Rmd"
+        stratification_script   = "${workflow.projectDir}/notebook/notebook_cell_stratification.Rmd"
 
         // Description
         SCBTC_STRATIFICATION(

@@ -16,18 +16,10 @@ workflow SC_INTERMEDIATE_CANCER {
 
     main:
         // Rmarkdown scripts
-        doublet_script       = "${workflow.projectDir}/notebook_doublet_detection.Rmd.Rmd"
-        normalization_script = "${workflow.projectDir}/notebook_dimensionality_reduction.Rmd"
+        normalization_script = "${workflow.projectDir}/notebook/notebook_dimensionality_reduction.Rmd"
         cluster_script       = "${workflow.projectDir}/notebook/notebook_cell_clustering.Rmd"
         metaprogram_script   = "${workflow.projectDir}/notebook/notebook_meta_programs.Rmd"
         differential_script  = "${workflow.projectDir}/notebook/notebook_differential_expression.Rmd"
-
-        // Description
-        SCBTC_DOUBLET(          
-            ch_cancer,
-            doublet_script,
-            input_task_step
-        )
 
         // Description
         SCBTC_NORMALIZATION(

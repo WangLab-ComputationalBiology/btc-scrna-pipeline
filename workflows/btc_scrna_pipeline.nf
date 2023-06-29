@@ -83,7 +83,6 @@ workflow BTC_SCRNA_PIPELINE {
         "nonMalignant"
     )
 
-    /*
     // Loading Malignant cells
     ch_cancer = SC_BASIC_STRATIFICATION.out.
         map{files -> [files.find{ it.toString().contains("Malignant") }]}
@@ -93,7 +92,7 @@ workflow BTC_SCRNA_PIPELINE {
         ch_cancer,
         "Malignant"
     ) 
-    */
+
 }
 
 /*

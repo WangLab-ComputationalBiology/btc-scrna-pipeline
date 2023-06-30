@@ -1,4 +1,10 @@
-BTC scRNA Pipeline
+# BTC scRNA Pipeline (Version 1.0)
+
+```
+
+nextflow run main.nf --sample_table <SAMPLE INPUT> --meta_data <META-DATA INPUT> --project_name <PROJECT_NAME> --cancer_type <CANCER> -profile <PROFILE> -resume
+
+```
 
 ## Project parameters
 

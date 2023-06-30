@@ -29,11 +29,12 @@
                 },
                 "cancer_type": {
                     "type": "string",
-                    "default": "None"
+                    "default": "None",
+                    "description": "Enter the cancer type"
                 },
                 "genome": {
                     "type": "string",
-                    "description": "Genome name",
+                    "description": "Genome ID",
                     "fa_icon": "fas fa-book",
                     "help_text": "If using a reference genome configured in the pipeline using iGenomes, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details.",
                     "default": "GRCh38"
@@ -57,35 +58,43 @@
             "properties": {
                 "thr_estimate_n_cells": {
                     "type": "integer",
-                    "default": 300
+                    "default": 300,
+                    "description": "Estimated number of cells"
                 },
                 "thr_mean_reads_per_cells": {
                     "type": "integer",
-                    "default": 25000
+                    "default": 25000,
+                    "description": "Mean reads per cell"
                 },
                 "thr_median_genes_per_cell": {
                     "type": "integer",
-                    "default": 900
+                    "default": 900,
+                    "description": "Median genes per cell"
                 },
                 "thr_median_umi_per_cell": {
                     "type": "integer",
-                    "default": 1000
+                    "default": 1000,
+                    "description": "Median UMI per cell"
                 },
                 "thr_n_feature_rna_min": {
                     "type": "integer",
-                    "default": 300
+                    "default": 300,
+                    "description": "Minimum features per cell"
                 },
                 "thr_n_feature_rna_max": {
                     "type": "integer",
-                    "default": 7500
+                    "default": 7500,
+                    "description": "Maximum features per cell"
                 },
                 "thr_percent_mito": {
                     "type": "integer",
-                    "default": 25
+                    "default": 25,
+                    "description": "Percentage of mitochondrial genes"
                 },
                 "thr_n_observed_cells": {
                     "type": "integer",
-                    "default": 300
+                    "default": 300,
+                    "description": "Number of observed cells"
                 }
             }
         },
@@ -95,17 +104,16 @@
             "description": "",
             "default": "",
             "properties": {
-                "input_integration_dimension": {
-                    "type": "string",
-                    "default": "auto"
-                },
                 "input_reduction_step": {
                     "type": "string",
-                    "default": "None"
+                    "default": "None",
+                    "description": "Internal pipeline parameter. Do not customize it.",
+                    "hidden": true
                 },
                 "thr_n_features": {
                     "type": "integer",
-                    "default": 2000
+                    "default": 2000,
+                    "description": "Number features for FindVariableFeatures"
                 }
             }
         },
@@ -117,23 +125,34 @@
             "properties": {
                 "input_cluster_step": {
                     "type": "string",
-                    "default": "None"
+                    "default": "None",
+                    "description": "Internal pipeline parameter. Do not customize it.",
+                    "hidden": true
                 },
                 "input_features_plot": {
                     "type": "string",
-                    "default": "LYZ;CCL5;IL32;PTPRCAP;FCGR3A;PF4;PTPRC"
+                    "default": "LYZ;CCL5;IL32;PTPRCAP;FCGR3A;PF4;PTPRC",
+                    "description": "Genes to be displayed on Feature plot"
+                },
+                "input_integration_dimension": {
+                    "type": "string",
+                    "default": "auto",
+                    "description": "Embeddings for Louvain clustering"
                 },
                 "input_group_plot": {
                     "type": "string",
-                    "default": "source_name;Sort"
+                    "default": "source_name;Sort",
+                    "description": "Meta-data columns for UMAP plot"
                 },
                 "thr_resolution": {
                     "type": "number",
-                    "default": 0.25
+                    "default": 0.25,
+                    "description": "Resolution threshold"
                 },
                 "thr_proportion": {
                     "type": "number",
-                    "default": 0.25
+                    "default": 0.25,
+                    "description": "Cell proportion for ROGUE calculation"
                 }
             }
         },
@@ -145,15 +164,18 @@
             "properties": {
                 "input_stratification_method": {
                     "type": "string",
-                    "default": "infercnv_label"
+                    "default": "infercnv_label",
+                    "description": "Method to define stratification labels"
                 },
                 "thr_cluster_size": {
                     "type": "integer",
-                    "default": 1000
+                    "default": 1000,
+                    "description": "Defining cluster size limit"
                 },
                 "thr_consensus_score": {
                     "type": "integer",
-                    "default": 2
+                    "default": 2,
+                    "description": "Consensus score threshold (Beta)"
                 }
             }
         },
@@ -165,11 +187,13 @@
             "properties": {
                 "input_cell_markers_db": {
                     "type": "string",
-                    "default": "./assets/cell_markers_database.csv"
+                    "default": "./assets/cell_markers_database.csv",
+                    "description": "Path to cell annotation CSV file"
                 },
                 "input_annotation_level": {
                     "type": "string",
-                    "default": "Major cells"
+                    "default": "Major cells",
+                    "description": "Define annotation level. Currently, only Major cells are available."
                 }
             }
         },
@@ -181,15 +205,19 @@
             "properties": {
                 "input_batch_step": {
                     "type": "string",
-                    "default": "None"
+                    "default": "None",
+                    "description": "Internal pipeline parameter. Do not customize it.",
+                    "hidden": true
                 },
                 "input_integration_method": {
                     "type": "string",
-                    "default": "all"
+                    "default": "all",
+                    "description": "Batch correction / Integration methods. Default (all)."
                 },
                 "input_target_variables": {
                     "type": "string",
-                    "default": "batch"
+                    "default": "batch",
+                    "description": "Meta-data target variable for batch correction"
                 }
             }
         },
@@ -201,19 +229,24 @@
             "properties": {
                 "input_integration_evaluate": {
                     "type": "string",
-                    "default": "all"
-                },
-                "input_lisi_variables": {
-                    "type": "string",
-                    "default": "cLISI;iLISI"
-                },
-                "input_auto_selection": {
-                    "type": "boolean",
-                    "default": true
+                    "default": "all",
+                    "description": "Define methods to be evaluated"
                 },
                 "thr_cell_proportion": {
                     "type": "number",
-                    "default": 0.3
+                    "default": 0.3,
+                    "description": "Cell proportion for Batch evaluation"
+                },
+                "input_lisi_variables": {
+                    "type": "string",
+                    "default": "cLISI;iLISI",
+                    "description": "Define LISI types for Density plot"
+                },
+                "input_auto_selection": {
+                    "type": "boolean",
+                    "default": true,
+                    "hidden": true,
+                    "description": "Internal pipeline parameter. Do not customize it."
                 }
             }
         },
@@ -225,22 +258,33 @@
             "properties": {
                 "input_deg_step": {
                     "type": "string",
-                    "default": "None"
+                    "default": "None",
+                    "description": "Internal pipeline parameter. Do not customize it.",
+                    "hidden": true
+                },
+                "input_deg_method": {
+                    "type": "string",
+                    "default": "wilcox",
+                    "description": "Define DEG method (check options at Seurat documentation)"
                 },
                 "input_top_deg": {
                     "type": "integer",
-                    "default": 20
+                    "default": 20,
+                    "description": "Number of DEG to be displayed"
                 },
                 "thr_fold_change": {
                     "type": "number",
-                    "default": 0.25
+                    "default": 0.25,
+                    "description": "Fold-change threshold"
                 },
                 "thr_min_percentage": {
                     "type": "number",
-                    "default": 0.1
+                    "default": 0.1,
+                    "description": "Minimum cell percentage per DEG"
                 },
                 "opt_hgv_filter": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "Filtering only HGV genes (Optional)"
                 }
             }
         },
@@ -252,19 +296,24 @@
             "properties": {
                 "input_meta_step": {
                     "type": "string",
-                    "default": "None"
+                    "default": "None",
+                    "description": "Internal pipeline parameter. Do not customize it.",
+                    "hidden": true
                 },
                 "input_meta_programs_db": {
                     "type": "string",
-                    "default": "./assets/meta_programs_database.csv"
+                    "default": "./assets/meta_programs_database.csv",
+                    "description": "Path to meta-program CSV file"
                 },
                 "input_cell_category": {
                     "type": "string",
-                    "default": "Malignant"
+                    "default": "Malignant",
+                    "description": "Meta-program cell category"
                 },
                 "input_heatmap_annotation": {
                     "type": "string",
-                    "default": "source_name;seurat_clusters"
+                    "default": "source_name;seurat_clusters",
+                    "description": "Meta-data columns to be displayed on heatmap"
                 }
             }
         },
@@ -328,7 +377,14 @@
                     "description": "Method used to save pipeline results to output directory.",
                     "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
                     "fa_icon": "fas fa-copy",
-                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
+                    "enum": [
+                        "symlink",
+                        "rellink",
+                        "link",
+                        "copy",
+                        "copyNoFollow",
+                        "move"
+                    ],
                     "hidden": true
                 },
                 "monochrome_logs": {

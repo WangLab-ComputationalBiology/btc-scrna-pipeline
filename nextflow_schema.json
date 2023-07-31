@@ -162,6 +162,11 @@
             "description": "",
             "default": "",
             "properties": {
+                "cluster_object": {
+                    "type": "string",
+                    "default": null,
+                    "hidden": true
+                },
                 "input_stratification_method": {
                     "type": "string",
                     "default": "infercnv_label",

@@ -39,4 +39,3 @@ workflow SC_BASIC_PROCESSING {
         // TODO nf-core: edit emitted channels
         ch_cluster
 }
-

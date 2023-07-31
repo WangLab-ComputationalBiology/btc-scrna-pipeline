@@ -34,12 +34,17 @@ WorkflowMain.initialise(workflow, params, log)
 */
 
 include { BTC_SCRNA_PIPELINE } from './workflows/btc_scrna_pipeline'
+include { PUB_SCRNA_PIPELINE } from './workflows/pub_scrna_pipeline'
 
 //
 // WORKFLOW: Run main nf-core/btc_scrna_pipeline analysis pipeline
 //
 workflow BTC_PIPELINE {
     BTC_SCRNA_PIPELINE ()
+}
+
+workflow PUB_PIPELINE {
+    PUB_SCRNA_PIPELINE ()
 }
 
 /*

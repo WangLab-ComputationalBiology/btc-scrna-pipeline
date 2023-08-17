@@ -1,0 +1,260 @@
+{
+    "ui": {},
+    "form": {
+        "title": "BTC scRNA Pipeline",
+        "type": "object",
+        "properties": {
+            "project_parameters": {
+                "title": "Project parameters",
+                "type": "object",
+                "description": "Reference genome related files and options required for the workflow.",
+                "properties": {
+                    "cancer_type": {
+                        "type": "string",
+                        "title": "Cancer Type",
+                        "description": "Enter the cancer type",
+                        "default": "Ovarian",
+                        "enum": [
+                            "Ovarian",
+                            "GBM",
+                            "Leukemia"
+                        ]
+                    },
+                    "genome": {
+                        "type": "string",
+                        "title": "Genome ID",
+                        "help_text": "If using a reference genome configured in the pipeline using iGenomes, use this parameter to give the ID for the reference. This is then used to build the full paths for all required reference genome files e.g. `--genome GRCh38`. \n\nSee the [nf-core website docs](https://nf-co.re/usage/reference_genomes) for more details.",
+                        "default": "GRCh38",
+                        "enum": [
+                            "GRCh38",
+                            "Custom"
+                        ]
+                    },
+                    "fasta": {
+                        "type": "string",
+                        "title": "Custom Reference Genome (FASTA).",
+                        "help_text": "This parameter is *mandatory* if `--genome` is not specified. If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.",
+                        "pathType": "references",
+                        "file": "**/genome_fasta/**/genome.fasta"
+                    }
+                }
+            },
+            "quality_control_parameters": {
+                "title": "Quality Control parameters",
+                "type": "object",
+                "properties": {
+                    "thr_estimate_n_cells": {
+                        "type": "integer",
+                        "default": 300,
+                        "title": "Estimated number of cells"
+                    },
+                    "thr_mean_reads_per_cells": {
+                        "type": "integer",
+                        "default": 25000,
+                        "title": "Mean reads per cell"
+                    },
+                    "thr_median_genes_per_cell": {
+                        "type": "integer",
+                        "default": 900,
+                        "title": "Median genes per cell"
+                    },
+                    "thr_median_umi_per_cell": {
+                        "type": "integer",
+                        "default": 1000,
+                        "title": "Median UMI per cell"
+                    },
+                    "thr_n_feature_rna_min": {
+                        "type": "integer",
+                        "default": 300,
+                        "title": "Minimum features per cell"
+                    },
+                    "thr_n_feature_rna_max": {
+                        "type": "integer",
+                        "default": 7500,
+                        "title": "Maximum features per cell"
+                    },
+                    "thr_percent_mito": {
+                        "type": "integer",
+                        "default": 25,
+                        "title": "Percentage of mitochondrial genes"
+                    },
+                    "thr_n_observed_cells": {
+                        "type": "integer",
+                        "default": 300,
+                        "title": "Number of observed cells"
+                    }
+                }
+            },
+            "normalization_parameters": {
+                "title": "Normalization parameters",
+                "type": "object",
+                "properties": {
+                    "thr_n_features": {
+                        "type": "integer",
+                        "default": 2000,
+                        "title": "Number features for FindVariableFeatures"
+                    }
+                }
+            },
+            "clustering_parameters": {
+                "title": "Clustering parameters",
+                "type": "object",
+                "properties": {
+                    "input_features_plot": {
+                        "type": "string",
+                        "default": "LYZ;CCL5;IL32;PTPRCAP;FCGR3A;PF4;PTPRC",
+                        "title": "Genes to be displayed on Feature plot"
+                    },
+                    "input_integration_dimension": {
+                        "type": "string",
+                        "default": "auto",
+                        "title": "Embeddings for Louvain clustering"
+                    },
+                    "input_group_plot": {
+                        "type": "string",
+                        "default": "source_name;Sort",
+                        "title": "Meta-data columns for UMAP plot"
+                    },
+                    "thr_resolution": {
+                        "type": "number",
+                        "default": 0.25,
+                        "title": "Resolution threshold"
+                    },
+                    "thr_proportion": {
+                        "type": "number",
+                        "default": 0.25,
+                        "title": "Cell proportion for ROGUE calculation"
+                    }
+                }
+            },
+            "stratification_parameters": {
+                "title": "Stratification parameters",
+                "type": "object",
+                "properties": {
+                    "input_stratification_method": {
+                        "type": "string",
+                        "default": "infercnv_label",
+                        "title": "Method to define stratification labels"
+                    },
+                    "thr_cluster_size": {
+                        "type": "integer",
+                        "default": 1000,
+                        "title": "Defining cluster size limit"
+                    },
+                    "thr_consensus_score": {
+                        "type": "integer",
+                        "default": 2,
+                        "title": "Consensus score threshold (Beta)"
+                    }
+                }
+            },
+            "cell_annotations_parameters": {
+                "title": "Cell annotations parameters",
+                "type": "object",
+                "properties": {
+                    "input_cell_markers_db": {
+                        "type": "string",
+                        "pathType": "references",
+                        "file": "**/spreadsheet_csv/**/spreadsheet.csv",
+                        "title": "Cell annotation CSV file (optional)"
+                    },
+                    "input_annotation_level": {
+                        "type": "string",
+                        "default": "Major cells",
+                        "title": "Annotation Level",
+                        "enum": ["Major cells"]
+                    }
+                }
+            },
+            "batch_correction_parameters": {
+                "title": "Batch correction parameters",
+                "type": "object",
+                "properties": {
+                    "input_integration_method": {
+                        "type": "string",
+                        "default": "all",
+                        "title": "Batch correction / Integration methods. Default (all)."
+                    },
+                    "input_target_variables": {
+                        "type": "string",
+                        "default": "batch",
+                        "title": "Meta-data target variable for batch correction"
+                    }
+                }
+            },
+            "batch_evaluation_parameters": {
+                "title": "Batch Evaluation parameters",
+                "type": "object",
+                "properties": {
+                    "input_integration_evaluate": {
+                        "type": "string",
+                        "default": "all",
+                        "title": "Define methods to be evaluated"
+                    },
+                    "thr_cell_proportion": {
+                        "type": "number",
+                        "default": 0.3,
+                        "title": "Cell proportion for Batch evaluation"
+                    },
+                    "input_lisi_variables": {
+                        "type": "string",
+                        "default": "cLISI;iLISI",
+                        "title": "Define LISI types for Density plot"
+                    }
+                }
+            },
+            "differential_expression_parameters": {
+                "title": "Differential Expression parameters",
+                "type": "object",
+                "properties": {
+                    "input_deg_method": {
+                        "type": "string",
+                        "default": "wilcox",
+                        "title": "Define DEG method (check options at Seurat documentation)"
+                    },
+                    "input_top_deg": {
+                        "type": "integer",
+                        "default": 20,
+                        "title": "Number of DEG to be displayed"
+                    },
+                    "thr_fold_change": {
+                        "type": "number",
+                        "default": 0.25,
+                        "title": "Fold-change threshold"
+                    },
+                    "thr_min_percentage": {
+                        "type": "number",
+                        "default": 0.1,
+                        "title": "Minimum cell percentage per DEG"
+                    },
+                    "opt_hgv_filter": {
+                        "type": "boolean",
+                        "title": "Filtering only HGV genes (Optional)"
+                    }
+                }
+            },
+            "meta_program_parameters": {
+                "title": "Meta-program parameters",
+                "type": "object",
+                "properties": {
+                    "input_meta_programs_db": {
+                        "type": "string",
+                        "pathType": "references",
+                        "file": "**/spreadsheet_csv/**/spreadsheet.csv",
+                        "title": "Meta-program CSV file (optional)"
+                    },
+                    "input_cell_category": {
+                        "type": "string",
+                        "default": "Malignant",
+                        "title": "Meta-program cell category"
+                    },
+                    "input_heatmap_annotation": {
+                        "type": "string",
+                        "default": "source_name;seurat_clusters",
+                        "title": "Meta-data columns to be displayed on heatmap"
+                    }
+                }
+            }
+        }
+    }
+}

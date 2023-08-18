@@ -47,6 +47,13 @@
                                         "file": "**/genome_fasta/**/genome.fasta"
                                     }
                                 }
+                            },
+                            {
+                                "properties": {
+                                    "genome": {
+                                        "enum": ["GRCh38"]
+                                    }
+                                }
                             }
                         ]
                     }
@@ -196,6 +203,13 @@
                                         "title": "Cell annotation CSV file (optional)"
                                     }
                                 }
+                            },
+                            {
+                                "properties": {
+                                    "input_cell_markers_db_source": {
+                                        "enum": ["Default"]
+                                    }
+                                }
                             }
                         ]
                     }
@@ -305,6 +319,13 @@
                                         "pathType": "references",
                                         "file": "**/spreadsheet_csv/**/spreadsheet.csv",
                                         "title": "Meta-program CSV file (optional)"
+                                    }
+                                }
+                            },
+                            {
+                                "properties": {
+                                    "input_meta_programs_db_source": {
+                                        "enum": ["Default"]
                                     }
                                 }
                             }

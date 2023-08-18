@@ -29,13 +29,26 @@
                             "GRCh38",
                             "Custom"
                         ]
-                    },
-                    "fasta": {
-                        "type": "string",
-                        "title": "Custom Reference Genome (FASTA).",
-                        "help_text": "This parameter is *mandatory* if `--genome` is not specified. If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.",
-                        "pathType": "references",
-                        "file": "**/genome_fasta/**/genome.fasta"
+                    }
+                },
+                "dependencies": {
+                    "genome": {
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "genome": {
+                                        "enum": ["Custom"]
+                                    },
+                                    "fasta": {
+                                        "type": "string",
+                                        "title": "Custom Reference Genome (FASTA).",
+                                        "help_text": "This parameter is *mandatory* if `--genome` is not specified. If you don't have a BWA index available this will be generated for you automatically. Combine with `--save_reference` to save BWA index for future runs.",
+                                        "pathType": "references",
+                                        "file": "**/genome_fasta/**/genome.fasta"
+                                    }
+                                }
+                            }
+                        ]
                     }
                 }
             },
@@ -152,17 +165,39 @@
                 "title": "Cell annotations parameters",
                 "type": "object",
                 "properties": {
-                    "input_cell_markers_db": {
-                        "type": "string",
-                        "pathType": "references",
-                        "file": "**/spreadsheet_csv/**/spreadsheet.csv",
-                        "title": "Cell annotation CSV file (optional)"
-                    },
                     "input_annotation_level": {
                         "type": "string",
                         "default": "Major cells",
                         "title": "Annotation Level",
                         "enum": ["Major cells"]
+                    },
+                    "input_cell_markers_db_source": {
+                        "type": "string",
+                        "title": "Input Cell Markers",
+                        "enum": [
+                            "Default",
+                            "Custom"
+                        ],
+                        "default": "Default"
+                    }
+                },
+                "dependencies": {
+                    "input_cell_markers_db_source": {
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "input_cell_markers_db_source": {
+                                        "enum": ["Custom"]
+                                    },
+                                    "input_cell_markers_db": {
+                                        "type": "string",
+                                        "pathType": "references",
+                                        "file": "**/spreadsheet_csv/**/spreadsheet.csv",
+                                        "title": "Cell annotation CSV file (optional)"
+                                    }
+                                }
+                            }
+                        ]
                     }
                 }
             },
@@ -237,12 +272,6 @@
                 "title": "Meta-program parameters",
                 "type": "object",
                 "properties": {
-                    "input_meta_programs_db": {
-                        "type": "string",
-                        "pathType": "references",
-                        "file": "**/spreadsheet_csv/**/spreadsheet.csv",
-                        "title": "Meta-program CSV file (optional)"
-                    },
                     "input_cell_category": {
                         "type": "string",
                         "default": "Malignant",
@@ -252,6 +281,34 @@
                         "type": "string",
                         "default": "source_name;seurat_clusters",
                         "title": "Meta-data columns to be displayed on heatmap"
+                    },
+                    "input_meta_programs_db_source": {
+                        "type": "string",
+                        "title": "Input Meta-Programs",
+                        "enum": [
+                            "Default",
+                            "Custom"
+                        ],
+                        "default": "Default"
+                    }
+                },
+                "dependencies": {
+                    "input_meta_programs_db_source": {
+                        "oneOf": [
+                            {
+                                "properties": {
+                                    "input_meta_programs_db_source": {
+                                        "enum": ["Custom"]
+                                    },
+                                    "input_meta_programs_db": {
+                                        "type": "string",
+                                        "pathType": "references",
+                                        "file": "**/spreadsheet_csv/**/spreadsheet.csv",
+                                        "title": "Meta-program CSV file (optional)"
+                                    }
+                                }
+                            }
+                        ]
                     }
                 }
             }

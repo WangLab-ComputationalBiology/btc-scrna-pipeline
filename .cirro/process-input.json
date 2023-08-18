@@ -4,6 +4,7 @@
     "project_name": "$.params.dataset.s3|/data/",
     "cancer_type": "$.params.dataset.paramJson.project_parameters.cancer_type",
     "genome": "$.params.dataset.paramJson.project_parameters.genome",
+    "fasta": "$.params.dataset.paramJson.project_parameters.fasta",
     "thr_estimate_n_cells": "$.params.dataset.paramJson.quality_control_parameters.thr_estimate_n_cells",
     "thr_mean_reads_per_cells": "$.params.dataset.paramJson.quality_control_parameters.thr_mean_reads_per_cells",
     "thr_median_genes_per_cell": "$.params.dataset.paramJson.quality_control_parameters.thr_median_genes_per_cell",
@@ -22,6 +23,7 @@
     "thr_cluster_size": "$.params.dataset.paramJson.stratification_parameters.thr_cluster_size",
     "thr_consensus_score": "$.params.dataset.paramJson.stratification_parameters.thr_consensus_score",
     "input_annotation_level": "$.params.dataset.paramJson.cell_annotations_parameters.input_annotation_level",
+    "input_cell_markers_db": "$.params.dataset.paramJson.cell_annotations_parameters.input_cell_markers_db",
     "input_integration_method": "$.params.dataset.paramJson.batch_correction_parameters.input_integration_method",
     "input_target_variables": "$.params.dataset.paramJson.batch_correction_parameters.input_target_variables",
     "input_integration_evaluate": "$.params.dataset.paramJson.batch_evaluation_parameters.input_integration_evaluate",
@@ -33,5 +35,6 @@
     "thr_min_percentage": "$.params.dataset.paramJson.differential_expression_parameters.thr_min_percentage",
     "opt_hgv_filter": "$.params.dataset.paramJson.differential_expression_parameters.opt_hgv_filter",
     "input_cell_category": "$.params.dataset.paramJson.meta_program_parameters.input_cell_category",
-    "input_heatmap_annotation": "$.params.dataset.paramJson.meta_program_parameters.input_heatmap_annotation"
+    "input_heatmap_annotation": "$.params.dataset.paramJson.meta_program_parameters.input_heatmap_annotation",
+    "input_meta_programs_db": "$.params.dataset.paramJson.meta_program_parameters.input_meta_programs_db"
 }

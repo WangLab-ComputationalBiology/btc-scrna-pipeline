@@ -51,7 +51,9 @@ def setup_input_parameters(ds: PreprocessDataset):
     # If the user selects a "Custom" genome,
     # then the `fasta` parameter will be used
     if ds.params["genome"] == "Custom":
-        ds.remove_param("genome")
+        # Set params.genome to False
+        ds.add_param("genome", False, overwrite=True)
+        # Make sure that params.fasta was provided by the user
         msg = "Must provide custom genome FASTA from references"
         assert ds.params.get("fasta") is not None, msg
 

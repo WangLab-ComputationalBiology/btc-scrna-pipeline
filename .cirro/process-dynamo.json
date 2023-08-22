@@ -11,7 +11,7 @@
   "code": {
     "repository": "GITHUBPUBLIC",
     "script": "main.nf",
-    "uri": "break-through-cancer/btc-scrna-pipeline",
+    "uri": "WangLab-ComputationalBiology/btc-scrna-pipeline",
     "version": "main"
   }
 }

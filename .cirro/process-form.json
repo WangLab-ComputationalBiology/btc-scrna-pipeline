@@ -7,7 +7,6 @@
             "project_parameters": {
                 "title": "Project parameters",
                 "type": "object",
-                "description": "Reference genome related files and options required for the workflow.",
                 "properties": {
                     "project_name": {
                         "type": "string",
@@ -20,9 +19,7 @@
                         "description": "Enter the cancer type",
                         "default": "Ovarian",
                         "enum": [
-                            "Ovarian",
-                            "GBM",
-                            "Leukemia"
+                            "Ovarian"
                         ]
                     },
                     "genome": {
@@ -223,11 +220,12 @@
             "batch_correction_parameters": {
                 "title": "Batch correction parameters",
                 "type": "object",
+                "description": "The target variable should be separated by comma.",
                 "properties": {
                     "input_integration_method": {
                         "type": "string",
                         "default": "all",
-                        "title": "Batch correction / Integration methods. Default (all)."
+                        "title": "Batch correction / Integration methods"
                     },
                     "input_target_variables": {
                         "type": "string",

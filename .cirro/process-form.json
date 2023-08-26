@@ -9,6 +9,11 @@
                 "type": "object",
                 "description": "Reference genome related files and options required for the workflow.",
                 "properties": {
+                    "project_name": {
+                        "type": "string",
+                        "default": "MSK Spectrum",
+                        "title": "Enter the project name"
+                    },
                     "cancer_type": {
                         "type": "string",
                         "title": "Cancer Type",

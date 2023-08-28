@@ -8,11 +8,6 @@
                 "title": "Project parameters",
                 "type": "object",
                 "properties": {
-                    "project_name": {
-                        "type": "string",
-                        "default": "MSK Spectrum",
-                        "title": "Enter the project name"
-                    },
                     "cancer_type": {
                         "type": "string",
                         "title": "Cancer Type",

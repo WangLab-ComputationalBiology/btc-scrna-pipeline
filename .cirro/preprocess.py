@@ -57,6 +57,9 @@ def setup_input_parameters(ds: PreprocessDataset):
         msg = "Must provide custom genome FASTA from references"
         assert ds.params.get("fasta") is not None, msg
 
+    # Removing empty spaces on project_name
+    ds.add_param("project_name", ds.params["project_name"].replace(" ", "-"), overwrite=True)
+
     # If the user did not select a custom Cell Markers DB CSV, use the default
     if ds.params.get("input_cell_markers_db") is None:
         ds.add_param(

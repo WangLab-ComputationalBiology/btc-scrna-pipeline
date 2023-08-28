@@ -2,7 +2,7 @@
     "sample_table": "sample_table.csv",
     "meta_data": "meta_data.csv",
     "outdir": "$.params.dataset.s3|/data/",
-    "project_name": "$.params.dataset.paramJson.project_parameters.project_name",
+    "project_name": "$.params.dataset.name",
     "cancer_type": "$.params.dataset.paramJson.project_parameters.cancer_type",
     "genome": "$.params.dataset.paramJson.project_parameters.genome",
     "fasta": "$.params.dataset.paramJson.project_parameters.fasta",

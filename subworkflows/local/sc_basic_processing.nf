@@ -18,9 +18,6 @@ workflow SC_BASIC_PROCESSING {
         merge_script   = "${workflow.projectDir}/notebook/notebook_merge.Rmd"
         cluster_script = "${workflow.projectDir}/notebook/notebook_cell_clustering.Rmd"
 
-        ch_qc_approved.
-            view()
-
         // Description
         SCBTC_MERGE(
             ch_qc_approved,

@@ -27,7 +27,7 @@ workflow SC_BASIC_PROCESSING {
             merge_script
         )
 
-        SCBTC_MERGE.out.
+        SCBTC_MERGE.out.project_rds.
             view()
 
         ch_normalize = SCBTC_MERGE.out.project_rds

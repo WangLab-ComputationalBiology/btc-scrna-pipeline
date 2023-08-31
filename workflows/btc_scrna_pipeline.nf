@@ -69,6 +69,9 @@ workflow BTC_SCRNA_PIPELINE {
         cancer_type
     )
 
+    SC_BASIC_STRATIFICATION.out.
+        view()
+
     // Loading nonMalignant
     ch_normal = SC_BASIC_STRATIFICATION.out.
         map{files -> [files.find{ it.toString().contains("nonMalignant") }]}

@@ -8,6 +8,12 @@
                 "title": "Project parameters",
                 "type": "object",
                 "properties": {
+                    "project_name": {
+                        "type": "string",
+                        "title": "Project name",
+                        "description": "Enter the project name",
+                        "default": "Test"
+                    },
                     "cancer_type": {
                         "type": "string",
                         "title": "Cancer Type",

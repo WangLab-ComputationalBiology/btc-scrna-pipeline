@@ -91,7 +91,8 @@ workflow BTC_SCRNA_PIPELINE {
     SC_INTERMEDIATE_CANCER(
         ch_cancer,
         "Malignant"
-    ) 
+    )
+
 }
 
 /*

@@ -4,6 +4,7 @@
 
 include { CELLRANGER_COUNT         } from '../../modules/nf-core/cellranger/count/main'
 include { CELLRANGER_MKGTF         } from '../../modules/nf-core/cellranger/mkgtf/main'
+include { SCBTC_INDEX              } from '../../modules/local/btcmodules/indexes/main'
 include { SCBTC_FILTERING          } from '../../modules/local/btcmodules/filtering/main'
 include { SCBTC_QCRENDER           } from '../../modules/local/btcmodules/report/main'
 
@@ -11,17 +12,17 @@ workflow SC_BASIC_QC {
 
     take:
         ch_sample_table // channel: [ val(sample), [ fastq ] ]
-        meta_data // path: /path/to/meta_data
-        genome // string: genome code
+        meta_data       // path: /path/to/meta_data
+        genome          // string: genome code
 
     main:
 
         // Channel definitions
-        ch_versions = Channel.empty()
+        ch_versions  = Channel.empty()
         ch_meta_data = Channel.fromPath(meta_data)
 
         // Rmarkdown scripts 
-        scqc_script = "${workflow.projectDir}/notebook/notebook_quality_control.Rmd"
+        scqc_script     = "${workflow.projectDir}/notebook/notebook_quality_control.Rmd"
         qc_table_script = "${workflow.projectDir}/notebook/notebook_quality_table_report.Rmd"
 
         // Retrieving Cellranger indexes
@@ -30,6 +31,9 @@ workflow SC_BASIC_QC {
         } else {
             cellranger_indexes = Channel.fromPath(genome)
         }
+
+        // Saving indexes
+        SCBTC_INDEX(cellranger_indexes)
 
         // Grouping fastq based on sample id
         ch_samples_grouped = ch_sample_table

@@ -48,7 +48,10 @@ workflow BTC_SCRNA_PIPELINE {
     ch_versions = Channel.empty()
 
     // Checking sample input
-    INPUT_CHECK(sample_table)
+    INPUT_CHECK(
+        sample_table,
+        meta_data
+    )
 
     // Basic quality control
     SC_BASIC_QC(

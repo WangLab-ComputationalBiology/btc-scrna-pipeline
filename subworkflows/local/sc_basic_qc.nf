@@ -26,7 +26,7 @@ workflow SC_BASIC_QC {
         qc_table_script = "${workflow.projectDir}/notebook/notebook_quality_table_report.Rmd"
 
         // Retrieving Cellranger indexes
-        SCBTC_INDEX(genome)
+        // SCBTC_INDEX(genome)
 
         // Grouping fastq based on sample id
         ch_samples_grouped = ch_sample_table
@@ -35,7 +35,11 @@ workflow SC_BASIC_QC {
             .map { row -> tuple row[0], row[1 .. 2].flatten() }
 
         // Cellranger alignment
-        ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, SCBTC_INDEX.out.index)
+        // ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, SCBTC_INDEX.out.index)
+
+        cellranger_indexes = params.genomes[params.genome].cellranger
+        ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, cellranger_indexes)
+
         ch_cell_matrices = ch_alignment.outs
             .map{sample, files -> [sample, files.findAll{ it.toString().endsWith("metrics_summary.csv") || it.toString().endsWith("filtered_feature_bc_matrix") }]}
             .map{sample, files -> [sample, files[0], files[1]]}

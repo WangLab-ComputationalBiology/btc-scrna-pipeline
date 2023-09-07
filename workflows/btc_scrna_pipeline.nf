@@ -57,6 +57,7 @@ workflow BTC_SCRNA_PIPELINE {
         params.genome
     )
     
+    /*
     // Normalization and clustering
     SC_BASIC_PROCESSING(
         SC_BASIC_QC.out,
@@ -92,7 +93,7 @@ workflow BTC_SCRNA_PIPELINE {
         ch_cancer,
         "Malignant"
     )
-
+    */
 }
 
 /*

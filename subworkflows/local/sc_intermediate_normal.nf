@@ -6,7 +6,7 @@ include { SCBTC_DOUBLET       } from '../../modules/local/btcmodules/doublet/mai
 include { SCBTC_NORMALIZATION } from '../../modules/local/btcmodules/normalization/main.nf'
 include { SCBTC_INTEGRATION   } from '../../modules/local/btcmodules/integration/main.nf'
 include { SCBTC_EVALUATION    } from '../../modules/local/btcmodules/evaluation/main.nf'
-include { SCBTC_RECLUSTERING  } from '../../modules/local/btcmodules/reclustering/main.nf'
+include { SCBTC_CLUSTERING    } from '../../modules/local/btcmodules/clustering/main.nf'
 include { SCBTC_DIFFERENTIAL  } from '../../modules/local/btcmodules/differential/main.nf'
 
 workflow SC_INTERMEDIATE_NORMAL {
@@ -53,21 +53,21 @@ workflow SC_INTERMEDIATE_NORMAL {
         )
 
         // Description
-        SCBTC_RECLUSTERING(          
+        SCBTC_CLUSTERING(          
             SCBTC_INTEGRATION.out.project_rds,
-            SCBTC_EVALUATION.out.best_method,
+            SCBTC_EVALUATION.out.integration_method,
             cluster_script,
             input_task_step
         )
 
         // Description
         SCBTC_DIFFERENTIAL(
-            SCBTC_RECLUSTERING.out.project_rds,
+            SCBTC_CLUSTERING.out.project_rds,
             differential_script,
             input_task_step
         )
 
-        ch_normal = SCBTC_RECLUSTERING.out.project_rds
+        ch_normal = SCBTC_CLUSTERING.out.project_rds
 
     emit:
         ch_normal

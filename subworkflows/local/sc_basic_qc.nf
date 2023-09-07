@@ -26,7 +26,17 @@ workflow SC_BASIC_QC {
         qc_table_script = "${workflow.projectDir}/notebook/notebook_quality_table_report.Rmd"
 
         // Retrieving Cellranger indexes
-        // SCBTC_INDEX(genome)
+        println genome
+        if(genome == "GRCh38") {
+
+            SCBTC_INDEX(genome)
+            cellranger_indexes = SCBTC_INDEX.out.index
+
+        } else {
+
+            cellranger_indexes = Channel.fromPath(params.genome)
+
+        }
 
         // Grouping fastq based on sample id
         ch_samples_grouped = ch_sample_table
@@ -35,9 +45,6 @@ workflow SC_BASIC_QC {
             .map { row -> tuple row[0], row[1 .. 2].flatten() }
 
         // Cellranger alignment
-        // ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, SCBTC_INDEX.out.index)
-
-        cellranger_indexes = params.genomes[params.genome].cellranger
         ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, cellranger_indexes)
 
         ch_cell_matrices = ch_alignment.outs

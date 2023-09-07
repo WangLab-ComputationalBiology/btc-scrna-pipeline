@@ -25,10 +25,12 @@ workflow SC_BASIC_PROCESSING {
         )
 
         ch_normalize = SCBTC_MERGE.out.project_rds
+        ch_integration = Channel.fromPath('path/to/dummy')
 
         // Description        
         SCBTC_CLUSTERING(          
             ch_normalize,
+            ch_integration,
             cluster_script,
             input_cluster_step
         )

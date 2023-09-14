@@ -32,6 +32,10 @@
                     "default": "None",
                     "description": "Enter the cancer type"
                 },
+                "igenomes_base": {
+                    "type": "string",
+                    "default": "gs://btc-refdata/scRNA/refData"
+                },
                 "genome": {
                     "type": "string",
                     "description": "Genome ID",

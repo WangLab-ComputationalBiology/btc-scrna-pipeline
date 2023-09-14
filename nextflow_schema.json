@@ -34,7 +34,8 @@
                 },
                 "igenomes_base": {
                     "type": "string",
-                    "default": "gs://btc-refdata/scRNA/refData"
+                    "default": "gs://btc-refdata/scRNA/refData",
+                    "description": "Enter URL/Path to the genome"
                 },
                 "genome": {
                     "type": "string",

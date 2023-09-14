@@ -30,7 +30,8 @@ workflow SC_INTERMEDIATE_CANCER {
         )
 
         // Description
-        ch_integration = Channel.fromPath('path/to/dummy')
+        ch_integration = 'path/to/dummy'
+
         SCBTC_CLUSTERING(          
             SCBTC_NORMALIZATION.out.project_rds,
             ch_integration,

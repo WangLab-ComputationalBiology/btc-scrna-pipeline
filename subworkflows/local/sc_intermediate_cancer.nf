@@ -30,11 +30,9 @@ workflow SC_INTERMEDIATE_CANCER {
         )
 
         // Description
-        ch_integration = 'path/to/dummy'
-
         SCBTC_CLUSTERING(          
             SCBTC_NORMALIZATION.out.project_rds,
-            ch_integration,
+            SCBTC_NORMALIZATION.out.dummy,
             cluster_script,
             input_task_step
         )

@@ -30,7 +30,7 @@ workflow SC_BASIC_PROCESSING {
         // Description        
         SCBTC_CLUSTERING(          
             ch_normalize,
-            ch_integration,
+            SCBTC_MERGE.out.dummy,
             cluster_script,
             input_cluster_step
         )

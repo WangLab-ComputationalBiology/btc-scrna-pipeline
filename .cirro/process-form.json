@@ -124,7 +124,7 @@
               "input_stratification_method": {
                 "type": "string",
                 "title": "Method to define stratification labels",
-                "default": "Ovarian",
+                "default": "infercnv_label",
                 "enum": [
                   "infercnv_label",
                   "consensus_label"

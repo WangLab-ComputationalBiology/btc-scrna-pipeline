@@ -465,7 +465,7 @@
             "$ref": "#/definitions/cell_annotations_parameters"
         },
         {
-            "$ref": "#/definitions/new_group_1"
+            "$ref": "#/definitions/cell_communication_parameters"
         },
         {
             "$ref": "#/definitions/batch_correction_parameters"

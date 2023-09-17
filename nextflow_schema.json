@@ -202,6 +202,29 @@
                 }
             }
         },
+        "cell_communication_parameters": {
+            "title": "Cell-cell communication parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_source_groups": {
+                    "type": "string",
+                    "default": "all",
+                    "description": "Source cell type names"
+                },
+                "input_target_groups": {
+                    "type": "string",
+                    "default": "all",
+                    "description": "Target cell type names"
+                },
+                "input_cellchat_annotation": {
+                    "type": "string",
+                    "default": "Secreted Signaling",
+                    "description": "CellChat interactions type"
+                }
+            }
+        },
         "batch_correction_parameters": {
             "title": "Batch correction parameters",
             "type": "object",
@@ -440,6 +463,9 @@
         },
         {
             "$ref": "#/definitions/cell_annotations_parameters"
+        },
+        {
+            "$ref": "#/definitions/new_group_1"
         },
         {
             "$ref": "#/definitions/batch_correction_parameters"

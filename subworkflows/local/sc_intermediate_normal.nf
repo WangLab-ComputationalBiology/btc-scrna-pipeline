@@ -8,6 +8,8 @@ include { SCBTC_INTEGRATION   } from '../../modules/local/btcmodules/integration
 include { SCBTC_EVALUATION    } from '../../modules/local/btcmodules/evaluation/main.nf'
 include { SCBTC_CLUSTERING    } from '../../modules/local/btcmodules/clustering/main.nf'
 include { SCBTC_DIFFERENTIAL  } from '../../modules/local/btcmodules/differential/main.nf'
+include { SCBTC_COMMUNICATION  } from '../../modules/local/btcmodules/communication/main.nf'
+
 
 workflow SC_INTERMEDIATE_NORMAL {
 
@@ -23,6 +25,7 @@ workflow SC_INTERMEDIATE_NORMAL {
         evaluation_script    = "${workflow.projectDir}/notebook/notebook_batch_evaluation.Rmd"
         cluster_script       = "${workflow.projectDir}/notebook/notebook_cell_clustering.Rmd"
         differential_script  = "${workflow.projectDir}/notebook/notebook_differential_expression.Rmd"
+        communication_script  = "${workflow.projectDir}/notebook/notebook_cell_communication.Rmd"
 
         // Description
         SCBTC_DOUBLET(          
@@ -36,6 +39,12 @@ workflow SC_INTERMEDIATE_NORMAL {
             ch_annotated,
             normalization_script,
             input_task_step
+        )
+
+        // Description
+        SCBTC_COMMUNICATION(
+            ch_annotated,
+            communication_script
         )
 
         // Description

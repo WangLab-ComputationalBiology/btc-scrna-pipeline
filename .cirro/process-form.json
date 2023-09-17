@@ -192,6 +192,27 @@
               }
             }
           },
+          "cell_communication_parameters": {
+            "title": "Cell-cell communication parameters",
+            "type": "object",
+            "properties": {
+              "input_source_groups": {
+                "type": "string",
+                "default": "all",
+                "title": "Source cell type names"
+              },
+              "input_target_groups": {
+                "type": "string",
+                "default": "all",
+                "title": "Target cell type names"
+              },
+              "input_cellchat_annotation": {
+                "type": "string",
+                "default": "Secreted Signaling",
+                "title": "CellChat interactions type"
+              }
+            }
+          },
           "batch_correction_parameters": {
             "title": "Batch correction parameters",
             "type": "object",

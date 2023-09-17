@@ -1,0 +1,24 @@
+[2023-09-17 15:51:20] [INFO]    [OmnipathR] Welcome to OmnipathR!
+[2023-09-17 15:51:20] [INFO]    [OmnipathR] Welcome to OmnipathR!
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/Caches/OmnipathR/cache.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/Caches/OmnipathR/cache.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [INFO]    [OmnipathR] Initialized cache: `/Users/affaustino/Library/Caches/OmnipathR`.
+[2023-09-17 15:51:20] [INFO]    [OmnipathR] Initialized cache: `/Users/affaustino/Library/Caches/OmnipathR`.
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/db/db_def.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/db/db_def.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/internal/magic_bytes.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/internal/magic_bytes.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/internal/urls.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/internal/urls.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/internal/id_types.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] Reading JSON from `/Users/affaustino/Library/R/arm64/4.3/library/OmnipathR/internal/id_types.json` (encoding: UTF-8).
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE
+[2023-09-17 15:51:20] [TRACE]   [OmnipathR] JSON validation successful: TRUE

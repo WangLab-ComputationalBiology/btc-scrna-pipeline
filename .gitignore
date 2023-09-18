@@ -10,6 +10,7 @@ Stub/
 .DS_Store
 testing/
 testing*
+omnipathr*
 *.pyc
 *.Rproj
 *.Rhistory

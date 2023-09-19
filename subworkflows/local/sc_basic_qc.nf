@@ -12,14 +12,13 @@ workflow SC_BASIC_QC {
 
     take:
         ch_sample_table // channel: [ val(sample), [ fastq ] ]
-        meta_data       // path: /path/to/meta_data
+        ch_meta_data    // channel
         genome          // string: genome code
 
     main:
 
         // Channel definitions
         ch_versions  = Channel.empty()
-        ch_meta_data = Channel.fromPath(meta_data)
 
         // Rmarkdown scripts 
         scqc_script     = "${workflow.projectDir}/notebook/notebook_quality_control.Rmd"

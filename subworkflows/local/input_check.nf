@@ -18,11 +18,10 @@ workflow INPUT_CHECK {
             .set{ reads }
 
         METADATA_CHECK(meta_data)
-            .set{ metadata }     
 
     emit:
         reads                                     // channel: [ val(meta), [ reads ] ]
-        metadata = metadata                       // channel
+        metadata = METADATA_CHECK.out.csv         // channel
         versions = SAMPLESHEET_CHECK.out.versions // channel: [ versions.yml ]
 }
 

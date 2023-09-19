@@ -67,7 +67,6 @@ workflow BTC_SCRNA_PIPELINE {
         "main"
     )
 
-    /*
     // Performing cell stratification
     SC_BASIC_STRATIFICATION(
         SC_BASIC_PROCESSING.out,
@@ -97,7 +96,7 @@ workflow BTC_SCRNA_PIPELINE {
         ch_cancer,
         "Malignant"
     )
-    */
+
 }
 
 /*

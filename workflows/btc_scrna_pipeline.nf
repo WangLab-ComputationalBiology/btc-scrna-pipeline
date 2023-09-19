@@ -46,7 +46,6 @@ include { SC_INTERMEDIATE_CANCER   } from '../subworkflows/local/sc_intermediate
 workflow BTC_SCRNA_PIPELINE {
 
     ch_versions = Channel.empty()
-    ch_meta_data = Channel.fromPath(meta_data)
 
     // Checking sample input
     INPUT_CHECK(
@@ -57,7 +56,7 @@ workflow BTC_SCRNA_PIPELINE {
     // Basic quality control
     SC_BASIC_QC(
         INPUT_CHECK.out.reads,
-        ch_meta_data,
+        INPUT_CHECK.out.metadata,
         params.genome
     )
     

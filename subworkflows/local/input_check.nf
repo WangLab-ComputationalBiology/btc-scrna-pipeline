@@ -17,10 +17,12 @@ workflow INPUT_CHECK {
             .map{ row -> tuple row.sample, row.fastq_1, row.fastq_2 }
             .set{ reads }
 
-        METADATA_CHECK(meta_data)        
+        METADATA_CHECK(meta_data)
+            .set{ metadata }     
 
     emit:
         reads                                     // channel: [ val(meta), [ reads ] ]
+        metadata                                  // channel
         versions = SAMPLESHEET_CHECK.out.versions // channel: [ versions.yml ]
 }
 

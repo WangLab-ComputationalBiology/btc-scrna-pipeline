@@ -44,16 +44,9 @@ include { SC_INTERMEDIATE_CANCER   } from '../subworkflows/local/sc_intermediate
 */
 
 workflow BTC_SCRNA_PIPELINE {
-
    
     ch_versions = Channel.empty()
-
-    println  "${workflow.projectDir}/${params.meta_data}"
-    println  "${meta_data}"
-
     meta_data   = "${workflow.projectDir}/${params.meta_data}"
-
-    "${workflow.projectDir}/${params.input_cell_markers_db}"
 
     // Checking sample input
     INPUT_CHECK(

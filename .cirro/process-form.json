@@ -212,18 +212,6 @@
             "type": "object",
             "description": "The target variable should be separated by comma.",
             "properties": {
-              "input_integration_method": {
-                "type": "string",
-                "default": "all",
-                "enum": [
-                  "all",
-                  "cca",
-                  "rpca",
-                  "harmony",
-                  "mnn"
-                ],
-                "title": "Batch correction / Integration methods"
-              },
               "input_target_variables": {
                 "type": "string",
                 "default": "batch",
@@ -235,6 +223,18 @@
             "title": "Batch Evaluation parameters",
             "type": "object",
             "properties": {
+              "input_integration_evaluate": {
+                "type": "string",
+                "default": "all",
+                "enum": [
+                  "all",
+                  "cca",
+                  "rpca",
+                  "harmony",
+                  "mnn"
+                ],
+                "title": "Define methods to be evaluated"
+              },
               "thr_cell_proportion": {
                 "type": "number",
                 "default": 0.3,

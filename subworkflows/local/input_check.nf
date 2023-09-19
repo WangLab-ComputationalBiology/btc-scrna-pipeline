@@ -22,7 +22,7 @@ workflow INPUT_CHECK {
 
     emit:
         reads                                     // channel: [ val(meta), [ reads ] ]
-        metadata                                  // channel
+        metadata = metadata                       // channel
         versions = SAMPLESHEET_CHECK.out.versions // channel: [ versions.yml ]
 }
 

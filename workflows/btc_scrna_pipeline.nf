@@ -48,55 +48,81 @@ workflow BTC_SCRNA_PIPELINE {
     ch_versions = Channel.empty()
     meta_data   = "${workflow.projectDir}/${params.meta_data}"
 
-    // Checking sample input
-    INPUT_CHECK(
-        sample_table,
-        meta_data
-    )
+    if(params.workflow_level == "Basic") {
+        
+        // Checking sample input
+        INPUT_CHECK(
+            sample_table,
+            meta_data
+        )
 
-    // Basic quality control
-    SC_BASIC_QC(
-        INPUT_CHECK.out.reads,
-        INPUT_CHECK.out.metadata,
-        params.genome
-    )
-    
-    // Normalization and clustering
-    SC_BASIC_PROCESSING(
-        SC_BASIC_QC.out,
-        "main"
-    )
+        // Basic quality control
+        SC_BASIC_QC(
+            INPUT_CHECK.out.reads,
+            INPUT_CHECK.out.metadata,
+            params.genome
+        )
+        
+        // Normalization and clustering
+        SC_BASIC_PROCESSING(
+            SC_BASIC_QC.out,
+            "main"
+        )
 
-    // Performing cell stratification
-    SC_BASIC_STRATIFICATION(
-        SC_BASIC_PROCESSING.out,
-        cancer_type
-    )
+    }
 
-    // Loading nonMalignant
-    ch_normal = SC_BASIC_STRATIFICATION.out.
-        map{files -> [files.find{ it.toString().contains("nonMalignant") }]}
+    if(params.workflow_level == "Complete") {
 
-    SC_BASIC_CELL_ANNOTATION(
-        ch_normal
-    )
+        // Checking sample input
+        INPUT_CHECK(
+            sample_table,
+            meta_data
+        )
 
-    // Analyzing normal/nonMalignant cells
-    SC_INTERMEDIATE_NORMAL(
-        SC_BASIC_CELL_ANNOTATION.out,
-        "nonMalignant"
-    )
+        // Basic quality control
+        SC_BASIC_QC(
+            INPUT_CHECK.out.reads,
+            INPUT_CHECK.out.metadata,
+            params.genome
+        )
+        
+        // Normalization and clustering
+        SC_BASIC_PROCESSING(
+            SC_BASIC_QC.out,
+            "main"
+        )
 
-    // Loading Malignant cells
-    ch_cancer = SC_BASIC_STRATIFICATION.out.
-        map{files -> [files.find{ it.toString().contains("Malignant") }]}
+        // Performing cell stratification
+        SC_BASIC_STRATIFICATION(
+            SC_BASIC_PROCESSING.out,
+            cancer_type
+        )
 
-    // Analyzing cancer/Malignant cells
-    SC_INTERMEDIATE_CANCER(
-        ch_cancer,
-        "Malignant"
-    )
+        // Loading nonMalignant
+        ch_normal = SC_BASIC_STRATIFICATION.out.
+            map{files -> [files.find{ it.toString().contains("nonMalignant") }]}
 
+        SC_BASIC_CELL_ANNOTATION(
+            ch_normal
+        )
+
+        // Analyzing normal/nonMalignant cells
+        SC_INTERMEDIATE_NORMAL(
+            SC_BASIC_CELL_ANNOTATION.out,
+            "nonMalignant"
+        )
+
+        // Loading Malignant cells
+        ch_cancer = SC_BASIC_STRATIFICATION.out.
+            map{files -> [files.find{ it.toString().contains("Malignant") }]}
+
+        // Analyzing cancer/Malignant cells
+        SC_INTERMEDIATE_CANCER(
+            ch_cancer,
+            "Malignant"
+        )
+
+    }
 }
 
 /*

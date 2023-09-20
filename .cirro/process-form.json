@@ -4,6 +4,21 @@
         "title": "BTC scRNA Pipeline",
         "type": "object",
         "properties": {
+          "pipeline_parameters": {
+            "title": "Pipeline parameters",
+            "type": "object",
+            "properties": {
+              "workflow_level": {
+                "type": "string",
+                "default": "Complete",
+                "enum": [
+                  "Complete",
+                  "Basic"
+                ],
+                "title": "Paramteres related to entrypoints"
+              }
+            }
+          },
           "project_parameters": {
             "title": "Project parameters",
             "type": "object",

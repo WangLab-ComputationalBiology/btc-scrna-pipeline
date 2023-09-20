@@ -39,9 +39,8 @@ include { BTC_SCRNA_PIPELINE } from './workflows/btc_scrna_pipeline'
 //
 workflow BTC_PIPELINE {
 
-    params.internal_root_dir = $workflow.projectDir
-
     BTC_SCRNA_PIPELINE ()
+    
 }
 
 /*

@@ -12,7 +12,7 @@ WorkflowBtcscrnapipeline.initialise(params, log)
 // TODO nf-core: Add all file path parameters for the pipeline to the list below
 // Check input path parameters to see if they exist
 def checkPathParamList = [ params.sample_table, params.meta_data ]
-for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true) } }
+for (param in checkPathParamList) { if (param) { file(param, checkIfExists: false) } }
 
 // Check mandatory parameters
 if (params.sample_table) { sample_table = file(params.sample_table) } else { exit 1, 'Sample sheet not specified. Please, provide a --sample_table <PATH/TO/SAMMPLE_TABLE.csv> !' }
@@ -46,7 +46,13 @@ include { SC_INTERMEDIATE_CANCER   } from '../subworkflows/local/sc_intermediate
 workflow BTC_SCRNA_PIPELINE {
    
     ch_versions = Channel.empty()
-    meta_data   = "${params.meta_data}"
+
+    // Cirro-related edition
+    if(params.meta_data == "assets/test_meta_data.csv") {
+        meta_data = "${workflow.projectDir}/${params.meta_data}"
+    } else {
+        meta_data = "${params.meta_data}"
+    }
 
     if(params.workflow_level == "Basic") {
         

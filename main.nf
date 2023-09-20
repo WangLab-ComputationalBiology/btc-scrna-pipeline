@@ -18,7 +18,6 @@ nextflow.enable.dsl = 2
 */
 
 params.fasta = WorkflowMain.getGenomeAttribute(params, 'fasta')
-params.internal_root_dir = $workflow.projectDir
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     VALIDATE & PRINT PARAMETER SUMMARY
@@ -39,6 +38,9 @@ include { BTC_SCRNA_PIPELINE } from './workflows/btc_scrna_pipeline'
 // WORKFLOW: Run main nf-core/btc_scrna_pipeline analysis pipeline
 //
 workflow BTC_PIPELINE {
+
+    params.internal_root_dir = $workflow.projectDir
+
     BTC_SCRNA_PIPELINE ()
 }
 

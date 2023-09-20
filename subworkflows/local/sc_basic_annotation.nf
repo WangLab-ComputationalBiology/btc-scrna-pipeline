@@ -13,7 +13,7 @@ workflow SC_BASIC_CELL_ANNOTATION {
     main:
         // Rmarkdown scripts 
         annotation_script = "${workflow.projectDir}/notebook/notebook_cell_annotation.Rmd"
-        annotation_db = "${workflow.projectDir}/${params.input_cell_markers_db}"
+        annotation_db = "${params.input_cell_markers_db}"
 
         // Description
         SCBTC_ANNOTATION(

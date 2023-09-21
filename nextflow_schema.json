@@ -22,6 +22,10 @@
                 "skip_com": {
                     "type": "boolean",
                     "description": "Skipping Cell-cell communication analysis"
+                },
+                "skip_dbl": {
+                    "type": "boolean",
+                    "description": "Skipping Doublet detection analysis"
                 }
             }
         },

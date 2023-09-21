@@ -87,7 +87,7 @@ workflow BTC_SCRNA_PIPELINE {
 
     }
 
-    if(params.workflow_level =~ /\b(Annotation|nonMalignant|Malignant|Complete)/) {
+    if(params.workflow_level =~ /\b(Annotation|nonMalignant|Complete)/) {
 
         // Loading nonMalignant
         ch_normal = SC_BASIC_STRATIFICATION.out.

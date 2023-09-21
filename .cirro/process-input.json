@@ -2,6 +2,8 @@
     "sample_table": "sample_table.csv",
     "outdir": "$.params.dataset.s3|/data/",
     "workflow_level": "$.params.dataset.paramJson.pipeline_parameters.workflow_level",
+    "skip_deg": "$.params.dataset.paramJson.pipeline_parameters.skip_deg",
+    "skip_com": "$.params.dataset.paramJson.pipeline_parameters.skip_com",
     "cancer_type": "$.params.dataset.paramJson.project_parameters.cancer_type",
     "genome": "$.params.dataset.paramJson.project_parameters.genome",
     "thr_estimate_n_cells": "$.params.dataset.paramJson.quality_control_parameters.thr_estimate_n_cells",

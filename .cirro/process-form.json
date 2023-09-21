@@ -19,7 +19,7 @@
                   "Malignant",
                   "Complete"
                 ],
-                "title": "Paramteres related to entrypoints"
+                "title": "Defining the pipeline entrypoints"
               },
               "skip_deg": {
                 "type": "boolean",

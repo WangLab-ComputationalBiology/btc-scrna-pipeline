@@ -13,7 +13,7 @@
                 "workflow_level": {
                     "type": "string",
                     "default": "Complete",
-                    "description": "Defining the pipeline entrypoints"
+                    "description": "Defining the pipeline entrypoint"
                 },
                 "skip_deg": {
                     "type": "boolean",

@@ -54,7 +54,7 @@ workflow BTC_SCRNA_PIPELINE {
         meta_data = "${params.meta_data}"
     }
 
-    if(params.workflow_level =~ "Basic|Stratification|Annotation|nonMalignant|Malignant|Complete") {
+    if(params.workflow_level =~ /\b(Basic|Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
         
         // Checking sample input
         INPUT_CHECK(
@@ -77,7 +77,7 @@ workflow BTC_SCRNA_PIPELINE {
 
     }
 
-    if(params.workflow_level =~ "Stratification|Annotation|nonMalignant|Malignant|Complete") {
+    if(params.workflow_level =~ /\b(Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
 
         // Performing cell stratification
         SC_BASIC_STRATIFICATION(
@@ -87,7 +87,7 @@ workflow BTC_SCRNA_PIPELINE {
 
     }
 
-    if(params.workflow_level =~ "Annotation|nonMalignant|Malignant|Complete") {
+    if(params.workflow_level =~ /\b(Annotation|nonMalignant|Malignant|Complete)/) {
 
         // Loading nonMalignant
         ch_normal = SC_BASIC_STRATIFICATION.out.
@@ -99,7 +99,7 @@ workflow BTC_SCRNA_PIPELINE {
 
     }
 
-    if(params.workflow_level =~ "nonMalignant|Complete") {
+    if(params.workflow_level =~ /\b(nonMalignant|Complete)/) {
 
         // Analyzing normal/nonMalignant cells
         SC_INTERMEDIATE_NORMAL(
@@ -109,7 +109,7 @@ workflow BTC_SCRNA_PIPELINE {
 
     }
 
-    if(params.workflow_level =~ "Malignant|Complete") {
+    if(params.workflow_level =~ /\b(Malignant|Complete)/) {
 
         // Loading Malignant cells
         ch_cancer = SC_BASIC_STRATIFICATION.out.

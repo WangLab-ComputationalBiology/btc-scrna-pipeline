@@ -8,11 +8,20 @@
         "pipeline_parameters": {
             "title": "Pipeline parameters",
             "type": "object",
-            "description": "Paramteres related to entrypoints",
+            "description": "Parameters related to data flow",
             "properties": {
                 "workflow_level": {
                     "type": "string",
-                    "default": "Complete"
+                    "default": "Complete",
+                    "description": "Defining the pipeline entrypoints"
+                },
+                "skip_deg": {
+                    "type": "boolean",
+                    "description": "Skipping Differential expression analysis"
+                },
+                "skip_com": {
+                    "type": "boolean",
+                    "description": "Skipping Cell-cell communication analysis"
                 }
             }
         },

@@ -54,7 +54,7 @@ workflow BTC_SCRNA_PIPELINE {
         meta_data = "${params.meta_data}"
     }
 
-    if(params.workflow_level == "Basic") {
+    if(params.workflow_level =~ "Basic|Stratification|Annotation|nonMalignant|Malignant|Complete") {
         
         // Checking sample input
         INPUT_CHECK(
@@ -77,32 +77,17 @@ workflow BTC_SCRNA_PIPELINE {
 
     }
 
-    if(params.workflow_level == "Complete") {
-
-        // Checking sample input
-        INPUT_CHECK(
-            sample_table,
-            meta_data
-        )
-
-        // Basic quality control
-        SC_BASIC_QC(
-            INPUT_CHECK.out.reads,
-            INPUT_CHECK.out.metadata,
-            params.genome
-        )
-        
-        // Normalization and clustering
-        SC_BASIC_PROCESSING(
-            SC_BASIC_QC.out,
-            "main"
-        )
+    if(params.workflow_level =~ "Stratification|Annotation|nonMalignant|Malignant|Complete") {
 
         // Performing cell stratification
         SC_BASIC_STRATIFICATION(
             SC_BASIC_PROCESSING.out,
             cancer_type
         )
+
+    }
+
+    if(params.workflow_level =~ "Annotation|nonMalignant|Malignant|Complete") {
 
         // Loading nonMalignant
         ch_normal = SC_BASIC_STRATIFICATION.out.
@@ -112,11 +97,19 @@ workflow BTC_SCRNA_PIPELINE {
             ch_normal
         )
 
+    }
+
+    if(params.workflow_level =~ "nonMalignant|Complete") {
+
         // Analyzing normal/nonMalignant cells
         SC_INTERMEDIATE_NORMAL(
             SC_BASIC_CELL_ANNOTATION.out,
             "nonMalignant"
         )
+
+    }
+
+    if(params.workflow_level =~ "Malignant|Complete") {
 
         // Loading Malignant cells
         ch_cancer = SC_BASIC_STRATIFICATION.out.
@@ -129,6 +122,7 @@ workflow BTC_SCRNA_PIPELINE {
         )
 
     }
+
 }
 
 /*

@@ -23,11 +23,11 @@
               },
               "skip_deg": {
                 "type": "boolean",
-                "title": "Skipping Differential expression analysis"
+                "title": "Skipping Differential Expression Analysis"
               },
             "skip_com": {
                 "type": "boolean",
-                "title": "Skipping Cell-cell communication analysis"
+                "title": "Skipping Cell-cell Communication Analysis"
               }
             }
           },

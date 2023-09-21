@@ -1,7 +1,7 @@
 {
     "sample_table": "sample_table.csv",
     "outdir": "$.params.dataset.s3|/data/",
-    "genome": "$.params.dataset.paramJson.pipeline_parameters.workflow_level",
+    "workflow_level": "$.params.dataset.paramJson.pipeline_parameters.workflow_level",
     "cancer_type": "$.params.dataset.paramJson.project_parameters.cancer_type",
     "genome": "$.params.dataset.paramJson.project_parameters.genome",
     "thr_estimate_n_cells": "$.params.dataset.paramJson.quality_control_parameters.thr_estimate_n_cells",
@@ -14,7 +14,6 @@
     "thr_n_observed_cells": "$.params.dataset.paramJson.quality_control_parameters.thr_n_observed_cells",
     "thr_n_features": "$.params.dataset.paramJson.normalization_parameters.thr_n_features",
     "input_features_plot": "$.params.dataset.paramJson.clustering_parameters.input_features_plot",
-    "input_integration_dimension": "$.params.dataset.paramJson.clustering_parameters.input_integration_dimension",
     "input_group_plot": "$.params.dataset.paramJson.clustering_parameters.input_group_plot",
     "thr_resolution": "$.params.dataset.paramJson.clustering_parameters.thr_resolution",
     "thr_proportion": "$.params.dataset.paramJson.clustering_parameters.thr_proportion",

@@ -104,11 +104,6 @@
             "title": "Clustering parameters",
             "type": "object",
             "properties": {
-              "input_integration_dimension": {
-                "type": "string",
-                "default": "auto",
-                "title": "Embeddings for Louvain clustering"
-              },
               "input_group_plot": {
                 "type": "string",
                 "default": "source_name;Sort",

@@ -19,7 +19,7 @@
                   "Malignant",
                   "Complete"
                 ],
-                "title": "Defining the pipeline entrypoints"
+                "title": "Defining the pipeline entrypoint"
               },
               "skip_deg": {
                 "type": "boolean",

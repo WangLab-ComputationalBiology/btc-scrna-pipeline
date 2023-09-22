@@ -48,8 +48,8 @@ workflow BTC_SCRNA_PIPELINE {
     ch_versions = Channel.empty()
 
     // Preparing databases
-    meta_programs_db  = Channel.fromPath("${params.input_meta_programs_db}")
-    annotation_db     = Channel.fromPath("${params.input_cell_markers_db}")
+    meta_programs_db  = Channel.fromPath("${workflow.projectDir}/${params.input_meta_programs_db}")
+    annotation_db     = Channel.fromPath("${workflow.projectDir}/${params.input_cell_markers_db}")
 
     if(params.workflow_level =~ /\b(Basic|Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
         

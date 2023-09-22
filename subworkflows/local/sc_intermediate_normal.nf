@@ -10,7 +10,6 @@ include { SCBTC_CLUSTERING    } from '../../modules/local/btcmodules/clustering/
 include { SCBTC_DIFFERENTIAL  } from '../../modules/local/btcmodules/differential/main.nf'
 include { SCBTC_COMMUNICATION  } from '../../modules/local/btcmodules/communication/main.nf'
 
-
 workflow SC_INTERMEDIATE_NORMAL {
 
     take:

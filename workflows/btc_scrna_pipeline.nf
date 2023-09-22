@@ -108,7 +108,7 @@ workflow BTC_SCRNA_PIPELINE {
 
         // Analyzing normal/nonMalignant cells
         SC_INTERMEDIATE_NORMAL(
-            ch_normal,
+            SC_BASIC_CELL_ANNOTATION.out,
             "nonMalignant"
         )
 

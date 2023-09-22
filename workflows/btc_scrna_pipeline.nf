@@ -47,12 +47,9 @@ workflow BTC_SCRNA_PIPELINE {
    
     ch_versions = Channel.empty()
 
-    // Cirro-related edition
-    if(params.meta_data == "assets/test_meta_data.csv") {
-        meta_data = "${workflow.projectDir}/${params.meta_data}"
-    } else {
-        meta_data = "${params.meta_data}"
-    }
+    // Preparing databases
+    meta_programs_db  = Channel.fromPath("${params.input_meta_programs_db}")
+    annotation_db     = Channel.fromPath("${params.input_cell_markers_db}")
 
     if(params.workflow_level =~ /\b(Basic|Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
         
@@ -94,16 +91,17 @@ workflow BTC_SCRNA_PIPELINE {
             map{files -> [files.find{ it.toString().contains("nonMalignant") }]}
 
         SC_BASIC_CELL_ANNOTATION(
-            ch_normal
+            ch_normal,
+            annotation_db
         )
-
+        
     }
 
     if(params.workflow_level =~ /\b(nonMalignant|Complete)/) {
 
         // Analyzing normal/nonMalignant cells
         SC_INTERMEDIATE_NORMAL(
-            SC_BASIC_CELL_ANNOTATION.out,
+            SC_BASIC_PROCESSING.out,
             "nonMalignant"
         )
 
@@ -118,6 +116,7 @@ workflow BTC_SCRNA_PIPELINE {
         // Analyzing cancer/Malignant cells
         SC_INTERMEDIATE_CANCER(
             ch_cancer,
+            meta_programs_db,
             "Malignant"
         )
 

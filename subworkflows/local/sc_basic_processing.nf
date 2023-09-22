@@ -25,7 +25,6 @@ workflow SC_BASIC_PROCESSING {
         )
 
         ch_normalize = SCBTC_MERGE.out.project_rds
-        ch_integration = 'path/to/dummy'
 
         // Description        
         SCBTC_CLUSTERING(          

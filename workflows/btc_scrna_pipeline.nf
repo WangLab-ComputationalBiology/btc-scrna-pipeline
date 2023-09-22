@@ -97,8 +97,6 @@ workflow BTC_SCRNA_PIPELINE {
         ch_normal = SC_BASIC_STRATIFICATION.out.
             map{files -> [files.find{ it.toString().contains("nonMalignant") }]}
 
-        ch_normal.view()
-
         SC_BASIC_CELL_ANNOTATION(
             ch_normal,
             annotation_db

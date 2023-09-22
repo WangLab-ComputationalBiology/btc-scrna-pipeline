@@ -35,6 +35,12 @@ workflow SC_INTERMEDIATE_NORMAL {
         )
 
         // Description
+        SCBTC_COMMUNICATION(
+            ch_annotated,
+            communication_script
+        )
+        
+        // Description
         SCBTC_NORMALIZATION(
             ch_annotated,
             normalization_script,
@@ -61,12 +67,6 @@ workflow SC_INTERMEDIATE_NORMAL {
             SCBTC_EVALUATION.out.integration_method,
             cluster_script,
             input_task_step
-        )
-
-        // Description
-        SCBTC_COMMUNICATION(
-            SCBTC_CLUSTERING.out.project_rds,
-            communication_script
         )
 
         // Description

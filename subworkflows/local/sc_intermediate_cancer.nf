@@ -21,7 +21,6 @@ workflow SC_INTERMEDIATE_CANCER {
         cluster_script       = "${workflow.projectDir}/notebook/notebook_cell_clustering.Rmd"
         metaprogram_script   = "${workflow.projectDir}/notebook/notebook_meta_programs.Rmd"
         differential_script  = "${workflow.projectDir}/notebook/notebook_differential_expression.Rmd"
-        /*meta_programs_db     = "${workflow.projectDir}/${params.input_meta_programs_db}"*/
 
         // Description
         SCBTC_NORMALIZATION(

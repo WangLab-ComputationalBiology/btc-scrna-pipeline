@@ -47,6 +47,13 @@ workflow BTC_SCRNA_PIPELINE {
    
     ch_versions = Channel.empty()
 
+    // Cirro-related edition
+    if(params.meta_data == "assets/test_meta_data.csv") {
+        meta_data = "${workflow.projectDir}/${params.meta_data}"
+    } else {
+        meta_data = "${params.meta_data}"
+    }
+    
     // Preparing databases
     meta_programs_db  = Channel.fromPath("${workflow.projectDir}/${params.input_meta_programs_db}")
     annotation_db     = Channel.fromPath("${workflow.projectDir}/${params.input_cell_markers_db}")

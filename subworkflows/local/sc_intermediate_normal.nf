@@ -19,12 +19,12 @@ workflow SC_INTERMEDIATE_NORMAL {
 
     main:
         // Rmarkdown scripts
-        doublet_script       = "${workflow.projectDir}/notebook/notebook_doublet_detection.Rmd"
-        normalization_script = "${workflow.projectDir}/notebook/notebook_dimensionality_reduction.Rmd"
-        integration_script   = "${workflow.projectDir}/notebook/notebook_batch_correction.Rmd"
-        evaluation_script    = "${workflow.projectDir}/notebook/notebook_batch_evaluation.Rmd"
-        cluster_script       = "${workflow.projectDir}/notebook/notebook_cell_clustering.Rmd"
-        differential_script  = "${workflow.projectDir}/notebook/notebook_differential_expression.Rmd"
+        doublet_script        = "${workflow.projectDir}/notebook/notebook_doublet_detection.Rmd"
+        normalization_script  = "${workflow.projectDir}/notebook/notebook_dimensionality_reduction.Rmd"
+        integration_script    = "${workflow.projectDir}/notebook/notebook_batch_correction.Rmd"
+        evaluation_script     = "${workflow.projectDir}/notebook/notebook_batch_evaluation.Rmd"
+        cluster_script        = "${workflow.projectDir}/notebook/notebook_cell_clustering.Rmd"
+        differential_script   = "${workflow.projectDir}/notebook/notebook_differential_expression.Rmd"
         communication_script  = "${workflow.projectDir}/notebook/notebook_cell_communication.Rmd"
 
         // Description
@@ -39,7 +39,7 @@ workflow SC_INTERMEDIATE_NORMAL {
             ch_annotated,
             communication_script
         )
-        
+
         // Description
         SCBTC_NORMALIZATION(
             ch_annotated,

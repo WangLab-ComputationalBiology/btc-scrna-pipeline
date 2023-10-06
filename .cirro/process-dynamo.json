@@ -1,0 +1,17 @@
+{
+  "id": "process-btc-scrna-1-0",
+  "childProcessIds": [],
+  "parentProcessIds": [
+    "single-cell-10X"
+  ],
+  "name": "BTC scRNA Pipeline",
+  "desc": "A Nextflow pipeline for single-cell RNA-Seq dataset",
+  "executor": "NEXTFLOW",
+  "documentationUrl": "https://github.com/break-through-cancer/btc-scrna-pipeline",
+  "code": {
+    "repository": "GITHUBPUBLIC",
+    "script": "main.nf",
+    "uri": "WangLab-ComputationalBiology/btc-scrna-pipeline",
+    "version": "main"
+  }
+}

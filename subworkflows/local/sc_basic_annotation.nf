@@ -8,6 +8,7 @@ workflow SC_BASIC_CELL_ANNOTATION {
 
     take:
         ch_nonmalignant
+        annotation_db
 
     main:
         // Rmarkdown scripts 
@@ -16,7 +17,8 @@ workflow SC_BASIC_CELL_ANNOTATION {
         // Description
         SCBTC_ANNOTATION(
             ch_nonmalignant,
-            annotation_script
+            annotation_script,
+            annotation_db
         )
 
         ch_annotation = SCBTC_ANNOTATION.out.project_rds

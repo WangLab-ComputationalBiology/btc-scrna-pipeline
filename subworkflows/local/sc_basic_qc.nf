@@ -12,21 +12,27 @@ workflow SC_BASIC_QC {
 
     take:
         ch_sample_table // channel: [ val(sample), [ fastq ] ]
-        meta_data // path: /path/to/meta_data
-        genome // string: genome code
+        ch_meta_data    // channel
+        genome          // string: genome code
 
     main:
 
         // Channel definitions
-        ch_versions = Channel.empty()
-        ch_meta_data = Channel.fromPath(meta_data)
+        ch_versions  = Channel.empty()
 
         // Rmarkdown scripts 
-        scqc_script = "${workflow.projectDir}/notebook/notebook_quality_control.Rmd"
+        scqc_script     = "${workflow.projectDir}/notebook/notebook_quality_control.Rmd"
         qc_table_script = "${workflow.projectDir}/notebook/notebook_quality_table_report.Rmd"
 
         // Retrieving Cellranger indexes
-        SCBTC_INDEX(genome)
+        if(genome == "GRCh38") {
+            cellranger_indexes = params.genomes[genome].cellranger
+        } else {
+            cellranger_indexes = Channel.fromPath(genome)
+        }
+
+        // Saving indexes
+        SCBTC_INDEX(cellranger_indexes)
 
         // Grouping fastq based on sample id
         ch_samples_grouped = ch_sample_table
@@ -35,7 +41,8 @@ workflow SC_BASIC_QC {
             .map { row -> tuple row[0], row[1 .. 2].flatten() }
 
         // Cellranger alignment
-        ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, SCBTC_INDEX.out.index)
+        ch_alignment = CELLRANGER_COUNT(ch_samples_grouped, cellranger_indexes)
+
         ch_cell_matrices = ch_alignment.outs
             .map{sample, files -> [sample, files.findAll{ it.toString().endsWith("metrics_summary.csv") || it.toString().endsWith("filtered_feature_bc_matrix") }]}
             .map{sample, files -> [sample, files[0], files[1]]}

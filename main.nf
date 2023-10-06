@@ -18,7 +18,6 @@ nextflow.enable.dsl = 2
 */
 
 params.fasta = WorkflowMain.getGenomeAttribute(params, 'fasta')
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     VALIDATE & PRINT PARAMETER SUMMARY
@@ -42,7 +41,9 @@ include { BTC_SCRNA_PIPELINE } from './workflows/btc_scrna_pipeline'
 //
 
 workflow BTC_PIPELINE {
+
     BTC_SCRNA_PIPELINE ()
+    
 }
 
 /*

@@ -3,10 +3,12 @@
 //
 
 include { SAMPLESHEET_CHECK } from '../../modules/local/samplesheet_check'
+include { METADATA_CHECK    } from '../../modules/local/metadata_check'
 
 workflow INPUT_CHECK {
     take:
         samplesheet // file: /path/to/samplesheet.csv
+        meta_data 
 
     main:
         SAMPLESHEET_CHECK(samplesheet)
@@ -15,8 +17,11 @@ workflow INPUT_CHECK {
             .map{ row -> tuple row.sample, row.fastq_1, row.fastq_2 }
             .set{ reads }
 
+        METADATA_CHECK(meta_data)
+
     emit:
         reads                                     // channel: [ val(meta), [ reads ] ]
+        metadata = METADATA_CHECK.out.csv         // channel
         versions = SAMPLESHEET_CHECK.out.versions // channel: [ versions.yml ]
 }
 

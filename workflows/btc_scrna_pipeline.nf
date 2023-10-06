@@ -12,7 +12,7 @@ qq.initialise(params, log)
 // TODO nf-core: Add all file path parameters for the pipeline to the list below
 // Check input path parameters to see if they exist
 def checkPathParamList = [ params.sample_table, params.meta_data ]
-for (param in checkPathParamList) { if (param) { file(param, checkIfExists: true) } }
+for (param in checkPathParamList) { if (param) { file(param, checkIfExists: false) } }
 
 // Check mandatory parameters
 if (params.sample_table) { sample_table = file(params.sample_table) } else { exit 1, 'Sample sheet not specified. Please, provide a --sample_table <PATH/TO/SAMMPLE_TABLE.csv> !' }
@@ -47,51 +47,87 @@ workflow BTC_SCRNA_PIPELINE {
 
     ch_versions = Channel.empty()
 
-    // Checking sample input
-    INPUT_CHECK(sample_table)
+    // Cirro-related edition
+    if(params.meta_data == "assets/test_meta_data.csv") {
+        meta_data = "${workflow.projectDir}/${params.meta_data}"
+    } else {
+        meta_data = "${params.meta_data}"
+    }
 
-    // Basic quality control
-    SC_BASIC_QC(
-        INPUT_CHECK.out.reads,
-        meta_data,
-        params.genome
-    )
+    // Preparing databases
+    meta_programs_db  = Channel.fromPath("${workflow.projectDir}/${params.input_meta_programs_db}")
+    annotation_db     = Channel.fromPath("${workflow.projectDir}/${params.input_cell_markers_db}")
 
-    // Normalization and clustering
-    SC_BASIC_PROCESSING(
-        SC_BASIC_QC.out,
-        "main"
-    )
+    if(params.workflow_level =~ /\b(Basic|Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
 
-    // Performing cell stratification
-    SC_BASIC_STRATIFICATION(
-        SC_BASIC_PROCESSING.out,
-        cancer_type
-    )
+        // Checking sample input
+        INPUT_CHECK(
+            sample_table,
+            meta_data
+        )
 
-    // Loading nonMalignant
-    ch_normal = SC_BASIC_STRATIFICATION.out.
-        map{files -> [files.find{ it.toString().contains("nonMalignant") }]}
+        // Basic quality control
+        SC_BASIC_QC(
+            INPUT_CHECK.out.reads,
+            INPUT_CHECK.out.metadata,
+            params.genome
+        )
 
-    SC_BASIC_CELL_ANNOTATION(
-        ch_normal
-    )
+        // Normalization and clustering
+        SC_BASIC_PROCESSING(
+            SC_BASIC_QC.out,
+            "main"
+        )
 
-    // Analyzing normal/nonMalignant cells
-    SC_INTERMEDIATE_NORMAL(
-        SC_BASIC_CELL_ANNOTATION.out,
-        "nonMalignant"
-    )
+    }
 
-    // Loading Malignant cells
-    ch_cancer = SC_BASIC_STRATIFICATION.out.
-        map{files -> [files.find{ it.toString().contains("Malignant") }]}
+    if(params.workflow_level =~ /\b(Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
 
-    // Analyzing cancer/Malignant cells
-    SC_INTERMEDIATE_CANCER(
-        ch_cancer,
-        "Malignant"
-    ) 
+        // Performing cell stratification
+        SC_BASIC_STRATIFICATION(
+            SC_BASIC_PROCESSING.out,
+            cancer_type
+        )
+
+    }
+
+    if(params.workflow_level =~ /\b(Annotation|nonMalignant|Complete)/) {
+
+        // Loading nonMalignant
+        ch_normal = SC_BASIC_STRATIFICATION.out.
+            map{files -> [files.find{ it.toString().contains("nonMalignant") }]}
+
+        SC_BASIC_CELL_ANNOTATION(
+            ch_normal,
+            annotation_db
+        )
+
+    }
+
+    if(params.workflow_level =~ /\b(nonMalignant|Complete)/) {
+
+        // Analyzing normal/nonMalignant cells
+        SC_INTERMEDIATE_NORMAL(
+            SC_BASIC_CELL_ANNOTATION.out,
+            "nonMalignant"
+        )
+
+    }
+
+    if(params.workflow_level =~ /\b(Malignant|Complete)/) {
+
+        // Loading Malignant cells
+        ch_cancer = SC_BASIC_STRATIFICATION.out.
+            map{files -> [files.find{ it.toString().contains("Malignant") }]}
+
+        // Analyzing cancer/Malignant cells
+        SC_INTERMEDIATE_CANCER(
+            ch_cancer,
+            meta_programs_db,
+            "Malignant"
+        )
+
+    }
 
 }
 

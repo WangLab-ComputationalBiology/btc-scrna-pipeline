@@ -5,6 +5,30 @@
     "description": "BTC scRNA Pipeline",
     "type": "object",
     "definitions": {
+        "pipeline_parameters": {
+            "title": "Pipeline parameters",
+            "type": "object",
+            "description": "Parameters related to data flow",
+            "properties": {
+                "workflow_level": {
+                    "type": "string",
+                    "default": "Complete",
+                    "description": "Defining the pipeline entrypoint"
+                },
+                "skip_deg": {
+                    "type": "boolean",
+                    "description": "Skipping Differential expression analysis"
+                },
+                "skip_com": {
+                    "type": "boolean",
+                    "description": "Skipping Cell-cell communication analysis"
+                },
+                "skip_dbl": {
+                    "type": "boolean",
+                    "description": "Skipping Doublet detection analysis"
+                }
+            }
+        },
         "project_parameters": {
             "title": "Project parameters",
             "type": "object",
@@ -31,6 +55,11 @@
                     "type": "string",
                     "default": "None",
                     "description": "Enter the cancer type"
+                },
+                "igenomes_base": {
+                    "type": "string",
+                    "default": "gs://btc-refdata/scRNA/refData",
+                    "description": "Enter URL/Path to the genome"
                 },
                 "genome": {
                     "type": "string",
@@ -199,6 +228,29 @@
                     "type": "string",
                     "default": "Major cells",
                     "description": "Define annotation level. Currently, only Major cells are available."
+                }
+            }
+        },
+        "cell_communication_parameters": {
+            "title": "Cell-cell communication parameters",
+            "type": "object",
+            "description": "",
+            "default": "",
+            "properties": {
+                "input_source_groups": {
+                    "type": "string",
+                    "default": "all",
+                    "description": "Source cell type names"
+                },
+                "input_target_groups": {
+                    "type": "string",
+                    "default": "all",
+                    "description": "Target cell type names"
+                },
+                "input_cellchat_annotation": {
+                    "type": "string",
+                    "default": "Secreted Signaling",
+                    "description": "CellChat interactions type"
                 }
             }
         },
@@ -382,14 +434,7 @@
                     "description": "Method used to save pipeline results to output directory.",
                     "help_text": "The Nextflow `publishDir` option specifies which intermediate files should be saved to the output directory. This option tells the pipeline what method should be used to move these files. See [Nextflow docs](https://www.nextflow.io/docs/latest/process.html#publishdir) for details.",
                     "fa_icon": "fas fa-copy",
-                    "enum": [
-                        "symlink",
-                        "rellink",
-                        "link",
-                        "copy",
-                        "copyNoFollow",
-                        "move"
-                    ],
+                    "enum": ["symlink", "rellink", "link", "copy", "copyNoFollow", "move"],
                     "hidden": true
                 },
                 "monochrome_logs": {
@@ -424,6 +469,9 @@
     },
     "allOf": [
         {
+            "$ref": "#/definitions/pipeline_parameters"
+        },
+        {
             "$ref": "#/definitions/project_parameters"
         },
         {
@@ -440,6 +488,9 @@
         },
         {
             "$ref": "#/definitions/cell_annotations_parameters"
+        },
+        {
+            "$ref": "#/definitions/cell_communication_parameters"
         },
         {
             "$ref": "#/definitions/batch_correction_parameters"

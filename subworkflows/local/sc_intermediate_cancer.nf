@@ -12,6 +12,7 @@ workflow SC_INTERMEDIATE_CANCER {
 
     take:
         ch_cancer
+        meta_programs_db
         input_task_step
 
     main:
@@ -31,6 +32,7 @@ workflow SC_INTERMEDIATE_CANCER {
         // Description
         SCBTC_CLUSTERING(          
             SCBTC_NORMALIZATION.out.project_rds,
+            SCBTC_NORMALIZATION.out.dummy,
             cluster_script,
             input_task_step
         )
@@ -39,6 +41,7 @@ workflow SC_INTERMEDIATE_CANCER {
         SCBTC_METAPROGRAM(          
             SCBTC_CLUSTERING.out.project_rds,
             metaprogram_script,
+            meta_programs_db,
             input_task_step
         )
 

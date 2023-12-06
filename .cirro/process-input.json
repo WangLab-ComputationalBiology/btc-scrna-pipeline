@@ -1,5 +1,6 @@
 {
     "sample_table": "sample_table.csv",
+    "meta_data": "meta_data.csv",
     "outdir": "$.params.dataset.s3|/data/",
     "workflow_level": "$.params.dataset.paramJson.pipeline_parameters.workflow_level",
     "skip_deg": "$.params.dataset.paramJson.pipeline_parameters.skip_deg",

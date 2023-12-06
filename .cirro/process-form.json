@@ -43,9 +43,11 @@
                 "type": "string",
                 "title": "Cancer Type",
                 "description": "Enter the cancer type",
-                "default": "Ovarian",
+                "default": "Not specific",
                 "enum": [
-                  "Ovarian"
+                  "Not specific",
+                  "Ovarian",
+                  "Glioblastoma"
                 ]
               },
               "genome": {

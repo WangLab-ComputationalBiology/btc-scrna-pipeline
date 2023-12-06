@@ -85,16 +85,5 @@ if __name__ == "__main__":
     sample_table = make_sample_table(ds)
     sample_table.to_csv("sample_table.csv", index=None)
 
-    print(ds.files)
-    print(ds.samplesheet)
-
-    # Save the meta data information stored in Cirro to CSV
-    (
-        ds
-        .samplesheet
-        .rename(columns=dict(sample="sample_id"))
-        .to_csv("meta_data.csv", index=None)
-    )
-
     # log
     ds.logger.info(ds.params)

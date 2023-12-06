@@ -44,14 +44,14 @@ include { SC_INTERMEDIATE_CANCER   } from '../subworkflows/local/sc_intermediate
 */
 
 workflow BTC_SCRNA_PIPELINE {
-   
+
     ch_versions = Channel.empty()
 
     // Cirro-related edition
     if(params.meta_data == "assets/test_meta_data.csv") {
         meta_data = "${workflow.projectDir}/${params.meta_data}"
     } else {
-        meta_data = "${params.meta_data}"
+        meta_data = file("${params.meta_data}")
     }
 
     // Preparing databases
@@ -59,7 +59,7 @@ workflow BTC_SCRNA_PIPELINE {
     annotation_db     = Channel.fromPath("${workflow.projectDir}/${params.input_cell_markers_db}")
 
     if(params.workflow_level =~ /\b(Basic|Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
-        
+
         // Checking sample input
         INPUT_CHECK(
             sample_table,
@@ -72,7 +72,7 @@ workflow BTC_SCRNA_PIPELINE {
             INPUT_CHECK.out.metadata,
             params.genome
         )
-        
+
         // Normalization and clustering
         SC_BASIC_PROCESSING(
             SC_BASIC_QC.out,
@@ -101,7 +101,7 @@ workflow BTC_SCRNA_PIPELINE {
             ch_normal,
             annotation_db
         )
-        
+
     }
 
     if(params.workflow_level =~ /\b(nonMalignant|Complete)/) {

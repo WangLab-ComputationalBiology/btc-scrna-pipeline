@@ -7,7 +7,7 @@
   "name": "BTC scRNA Pipeline",
   "desc": "A Nextflow pipeline for single-cell RNA-Seq dataset",
   "executor": "NEXTFLOW",
-  "documentationUrl": "https://github.com/break-through-cancer/btc-scrna-pipeline",
+  "documentationUrl": "https://break-through-cancer.github.io/btc-scrna-training/",
   "code": {
     "repository": "GITHUBPUBLIC",
     "script": "main.nf",

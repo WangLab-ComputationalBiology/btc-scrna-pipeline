@@ -55,6 +55,8 @@ workflow BTC_SCRNA_PIPELINE {
         meta_data = file("${params.meta_data}")
     }
 
+    println(meta_data)
+
     // Preparing databases
     meta_programs_db  = Channel.fromPath("${workflow.projectDir}/${params.input_meta_programs_db}")
     annotation_db     = Channel.fromPath("${workflow.projectDir}/${params.input_cell_markers_db}")
@@ -72,8 +74,6 @@ workflow BTC_SCRNA_PIPELINE {
             INPUT_CHECK.out.reads,
             params.genome
         )
-
-        println(INPUT_CHECK.out.metadata)
 
         // Basic quality control
         SC_BASIC_QC(

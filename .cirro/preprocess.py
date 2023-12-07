@@ -81,8 +81,8 @@ if __name__ == "__main__":
 
     setup_input_parameters(ds)
 
-    ds.logger.info("Printing out samplesheet columns")
-    ds.logger.info(ds.samplesheet.columns)
+    #ds.logger.info("Printing out samplesheet columns")
+    #ds.logger.info(ds.samplesheet.columns)
 
     # Make a sample table of the input data
     sample_table = make_sample_table(ds)

@@ -67,7 +67,7 @@ workflow BTC_SCRNA_PIPELINE {
             meta_data
         )
 
-        // Download index and running cellranger alignment
+        // Download index and Cellranger alignment
         SC_ALIGNMENT(
             INPUT_CHECK.out.reads,
             params.genome

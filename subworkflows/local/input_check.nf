@@ -8,7 +8,7 @@ include { METADATA_CHECK    } from '../../modules/local/metadata_check'
 workflow INPUT_CHECK {
     take:
         samplesheet // file: /path/to/samplesheet.csv
-        meta_data 
+        meta_data
 
     main:
         SAMPLESHEET_CHECK(samplesheet)
@@ -17,7 +17,8 @@ workflow INPUT_CHECK {
             .map{ row -> tuple row.sample, row.fastq_1, row.fastq_2 }
             .set{ reads }
 
-        METADATA_CHECK(meta_data)
+        METADATA_CHECK(meta_data).
+            view()
 
     emit:
         reads                                     // channel: [ val(meta), [ reads ] ]

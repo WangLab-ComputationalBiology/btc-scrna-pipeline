@@ -3,7 +3,6 @@
 from cirro.helpers.preprocess_dataset import PreprocessDataset
 import pandas as pd
 
-
 def make_sample_table(ds: PreprocessDataset) -> pd.DataFrame:
 
     ds.logger.info("Files annotated in the dataset:")

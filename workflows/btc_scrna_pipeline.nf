@@ -66,11 +66,16 @@ workflow BTC_SCRNA_PIPELINE {
             meta_data
         )
 
+        // Download index and running cellranger alignment
+        SC_ALIGNMENT(
+            INPUT_CHECK.out.reads,
+            params.genome
+        )
+
         // Basic quality control
         SC_BASIC_QC(
-            INPUT_CHECK.out.reads,
-            INPUT_CHECK.out.metadata,
-            params.genome
+            SC_ALIGNMENT.out,
+            INPUT_CHECK.out.metadata
         )
 
         // Normalization and clustering

@@ -37,3 +37,5 @@ workflow SC_ALIGNMENT {
 
     emit:
         ch_cell_matrices = ch_cell_matrices // channel: [ matrices, filtered_feature_bc_matrix ]
+
+}

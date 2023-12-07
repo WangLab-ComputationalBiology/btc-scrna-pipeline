@@ -81,6 +81,8 @@ if __name__ == "__main__":
 
     setup_input_parameters(ds)
 
+    ds.logger.info(ds.samplesheet.columns)
+
     # Make a sample table of the input data
     sample_table = make_sample_table(ds)
     sample_table.to_csv("sample_table.csv", index=None)

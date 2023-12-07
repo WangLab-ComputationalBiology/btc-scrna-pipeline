@@ -17,8 +17,7 @@ workflow INPUT_CHECK {
             .map{ row -> tuple row.sample, row.fastq_1, row.fastq_2 }
             .set{ reads }
 
-        METADATA_CHECK(meta_data).
-            view()
+        METADATA_CHECK(meta_data)
 
     emit:
         reads                                     // channel: [ val(meta), [ reads ] ]

@@ -73,6 +73,8 @@ workflow BTC_SCRNA_PIPELINE {
             params.genome
         )
 
+        println(INPUT_CHECK.out.metadata)
+
         // Basic quality control
         SC_BASIC_QC(
             SC_ALIGNMENT.out,

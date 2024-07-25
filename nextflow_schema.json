@@ -40,6 +40,10 @@
                     "default": "./assets/test_sample_table.csv",
                     "description": "Path to sample table"
                 },
+                "counts_table": {
+                    "type": "string",
+                    "description": "Path to counts table"
+                },
                 "meta_data": {
                     "type": "string",
                     "default": "./assets/test_meta_data.csv",

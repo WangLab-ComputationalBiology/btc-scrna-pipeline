@@ -1,4 +1,6 @@
-# BTC scRNA Pipeline (Version 1.0)
+# BTC scRNA Pipeline (Version 1.0) - LEGACY
+
+# This version has been deprecated. Please refer to SCRATCH-* based repositories at [WangLab](https://github.com/WangLab-ComputationalBiology/)
 
 ###  For more information please access:
 

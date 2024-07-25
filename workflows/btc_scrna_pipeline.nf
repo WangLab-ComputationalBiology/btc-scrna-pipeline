@@ -44,7 +44,6 @@ if (params.cancer_type) { cancer_type = params.cancer_type } else { exit 1, 'Can
 include { INPUT_CHECK              } from '../subworkflows/local/input_check'
 include { COUNTS_INPUT_CHECK       } from '../subworkflows/local/counts_input_check'
 include { SC_ALIGNMENT             } from '../subworkflows/local/sc_alignment'
-include { COUNTS_INPUT_CHECK       } from '../subworkflows/local/counts_input_check'
 include { SC_BASIC_QC              } from '../subworkflows/local/sc_basic_qc'
 include { SC_BASIC_PROCESSING      } from '../subworkflows/local/sc_basic_processing'
 include { SC_BASIC_STRATIFICATION  } from '../subworkflows/local/sc_basic_stratification'

@@ -15,7 +15,19 @@ def checkPathParamList = [ params.sample_table, params.meta_data ]
 for (param in checkPathParamList) { if (param) { file(param, checkIfExists: false) } }
 
 // Check mandatory parameters
-if (params.sample_table) { sample_table = file(params.sample_table) } else { exit 1, 'Sample sheet not specified. Please, provide a --sample_table <PATH/TO/SAMMPLE_TABLE.csv> !' }
+
+def sample_table = null;
+def counts_table = null;
+
+if (params.sample_table) {
+    sample_table = file(params.sample_table)
+} else {
+    if (params.counts_table) {
+        counts_table = file(params.counts_table)
+    } else {
+        exit 1, 'Neither sample table or counts table specified. Please, provide --sample_table <PATH/TO/SAMPLE_TABLE.csv>  or --counts_table <PATH/TO/COUNTS_TABLE.csv> !'
+    }
+}
 if (params.meta_data) { meta_data = file(params.meta_data) } else { exit 1, 'Meta-data not specified. Please, provide a --meta_data <PATH/TO/META_DATA.csv>' }
 if (params.project_name) { project_name = params.project_name } else { exit 1, 'Project name not specified. Please, provide a --project_name <NAME>.' }
 if (params.cancer_type) { cancer_type = params.cancer_type } else { exit 1, 'Cancer type not specified. Please, provide a --cancer_type <NAME>.' }
@@ -30,7 +42,11 @@ if (params.cancer_type) { cancer_type = params.cancer_type } else { exit 1, 'Can
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
 include { INPUT_CHECK              } from '../subworkflows/local/input_check'
+<<<<<<< HEAD
 include { SC_ALIGNMENT             } from '../subworkflows/local/sc_alignment'
+=======
+include { COUNTS_INPUT_CHECK       } from '../subworkflows/local/counts_input_check'
+>>>>>>> a6cdc96 (done)
 include { SC_BASIC_QC              } from '../subworkflows/local/sc_basic_qc'
 include { SC_BASIC_PROCESSING      } from '../subworkflows/local/sc_basic_processing'
 include { SC_BASIC_STRATIFICATION  } from '../subworkflows/local/sc_basic_stratification'
@@ -60,43 +76,53 @@ workflow BTC_SCRNA_PIPELINE {
     // Preparing databases
     meta_programs_db  = Channel.fromPath("${workflow.projectDir}/${params.input_meta_programs_db}")
     annotation_db     = Channel.fromPath("${workflow.projectDir}/${params.input_cell_markers_db}")
+    def ch_seurat     = null
 
-    if(params.workflow_level =~ /\b(Basic|Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
+    if(sample_table && !counts_table) {
+        if(params.workflow_level =~ /\b(Basic|Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
+            // Checking sample input
+            INPUT_CHECK(
+                sample_table,
+                meta_data
+            )
 
-        // Checking sample input
-        INPUT_CHECK(
-            sample_table,
+            // Download index and Cellranger alignment
+            SC_ALIGNMENT(
+                INPUT_CHECK.out.reads,
+                params.genome
+            )
+
+            // Basic quality control
+            SC_BASIC_QC(
+                SC_ALIGNMENT.out,
+                INPUT_CHECK.out.metadata
+            )
+
+            // Normalization and clustering
+            SC_BASIC_PROCESSING(
+                SC_BASIC_QC.out,
+                "main"
+            )
+
+            ch_seurat = SC_BASIC_PROCESSING.out
+        }
+    } else if (counts_table && !sample_table) {
+        COUNTS_INPUT_CHECK(
+            counts_table,
             meta_data
         )
 
-        // Download index and Cellranger alignment
-        SC_ALIGNMENT(
-            INPUT_CHECK.out.reads,
-            params.genome
-        )
-
-        // Basic quality control
-        SC_BASIC_QC(
-            SC_ALIGNMENT.out,
-            INPUT_CHECK.out.metadata
-        )
-
-        // Normalization and clustering
-        SC_BASIC_PROCESSING(
-            SC_BASIC_QC.out,
-            "main"
-        )
-
+        ch_seurat = COUNTS_INPUT_CHECK.out.counts.map { it -> it[1] }
+    } else {
+        exit 1, 'Both sample table and counts table specified. Please, provide only one of them.'
     }
 
     if(params.workflow_level =~ /\b(Stratification|Annotation|nonMalignant|Malignant|Complete)/) {
-
         // Performing cell stratification
         SC_BASIC_STRATIFICATION(
-            SC_BASIC_PROCESSING.out,
+            ch_seurat,
             cancer_type
         )
-
     }
 
     if(params.workflow_level =~ /\b(Annotation|nonMalignant|Complete)/) {

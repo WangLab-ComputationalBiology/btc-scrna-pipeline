@@ -42,11 +42,9 @@ if (params.cancer_type) { cancer_type = params.cancer_type } else { exit 1, 'Can
 // SUBWORKFLOW: Consisting of a mix of local and nf-core/modules
 //
 include { INPUT_CHECK              } from '../subworkflows/local/input_check'
-<<<<<<< HEAD
-include { SC_ALIGNMENT             } from '../subworkflows/local/sc_alignment'
-=======
 include { COUNTS_INPUT_CHECK       } from '../subworkflows/local/counts_input_check'
->>>>>>> a6cdc96 (done)
+include { SC_ALIGNMENT             } from '../subworkflows/local/sc_alignment'
+include { COUNTS_INPUT_CHECK       } from '../subworkflows/local/counts_input_check'
 include { SC_BASIC_QC              } from '../subworkflows/local/sc_basic_qc'
 include { SC_BASIC_PROCESSING      } from '../subworkflows/local/sc_basic_processing'
 include { SC_BASIC_STRATIFICATION  } from '../subworkflows/local/sc_basic_stratification'
